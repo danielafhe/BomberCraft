@@ -27,7 +27,6 @@ THREEx.MinecraftChar = function (skinUrl) {
 		side: THREE.DoubleSide
 	})
 
-
 	//////////////////////////////////////////////////////////////////////////////////
 	//		define size constant						//
 	//////////////////////////////////////////////////////////////////////////////////
@@ -69,42 +68,40 @@ THREEx.MinecraftChar = function (skinUrl) {
 
 	// build model.head
 	var geometry = new THREE.CubeGeometry(sizes.headW, sizes.headH, sizes.headD)
-	mapUv(geometry, 0, 16, 24, 24, 16)	// left
-	mapUv(geometry, 1, 0, 24, 8, 16)	// right
-	mapUv(geometry, 2, 8, 32, 16, 24)	// top
-	mapUv(geometry, 3, 16, 32, 24, 24)	// bottom
-	mapUv(geometry, 4, 8, 24, 16, 16)	// front
-	mapUv(geometry, 5, 24, 24, 32, 16)	// back
+	mapUv(geometry, 0, 16, 24, 24, 16) // left
+	mapUv(geometry, 1, 0, 24, 8, 16) // right
+	mapUv(geometry, 2, 8, 32, 16, 24) // top
+	mapUv(geometry, 3, 16, 32, 24, 24) // bottom
+	mapUv(geometry, 4, 8, 24, 16, 16) // front
+	mapUv(geometry, 5, 24, 24, 32, 16) // back
 	var mesh = new THREE.Mesh(geometry, material)
 	mesh.position.y = sizes.headH / 2
 	model.head = mesh
 	model.headGroup.add(model.head)
-
 
 	// build model.helmet
 	var geometry = new THREE.CubeGeometry(sizes.helmetH, sizes.helmetH, sizes.helmetH)
 	model.helmet = new THREE.Mesh(geometry, materialTran)
 	model.headGroup.add(model.helmet)
 	model.helmet.position.y = sizes.headH / 2
-	mapUv(geometry, 0, 48, 24, 56, 16)	// left
-	mapUv(geometry, 1, 32, 24, 40, 16)	// right
-	mapUv(geometry, 2, 40, 32, 48, 24)	// top
-	mapUv(geometry, 3, 48, 32, 56, 24)	// bottom
-	mapUv(geometry, 4, 40, 24, 48, 16)	// front
-	mapUv(geometry, 5, 56, 24, 64, 16)	// back
-
+	mapUv(geometry, 0, 48, 24, 56, 16) // left
+	mapUv(geometry, 1, 32, 24, 40, 16) // right
+	mapUv(geometry, 2, 40, 32, 48, 24) // top
+	mapUv(geometry, 3, 48, 32, 56, 24) // bottom
+	mapUv(geometry, 4, 40, 24, 48, 16) // front
+	mapUv(geometry, 5, 56, 24, 64, 16) // back
 
 	// build model.body
 	var geometry = new THREE.CubeGeometry(sizes.bodyW, sizes.bodyH, sizes.bodyD)
 	model.body = new THREE.Mesh(geometry, material)
 	model.root.add(model.body)
 	model.body.position.y = sizes.legH + sizes.bodyH / 2
-	mapUv(geometry, 0, 28, 12, 32, 0)	// left
-	mapUv(geometry, 1, 16, 12, 20, 0)	// right
-	mapUv(geometry, 2, 20, 16, 28, 12)	// top
-	mapUv(geometry, 3, 28, 16, 32, 12)	// bottom
-	mapUv(geometry, 4, 20, 12, 28, 0)	// front
-	mapUv(geometry, 5, 32, 12, 40, 0)	// back
+	mapUv(geometry, 0, 28, 12, 32, 0) // left
+	mapUv(geometry, 1, 16, 12, 20, 0) // right
+	mapUv(geometry, 2, 20, 16, 28, 12) // top
+	mapUv(geometry, 3, 28, 16, 32, 12) // bottom
+	mapUv(geometry, 4, 20, 12, 28, 0) // front
+	mapUv(geometry, 5, 32, 12, 40, 0) // back
 
 	// build model.armR
 	var geometry = new THREE.CubeGeometry(sizes.armW, sizes.armH, sizes.armD)
@@ -113,12 +110,12 @@ THREEx.MinecraftChar = function (skinUrl) {
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, -sizes.armH / 2 + sizes.armW / 2, 0));
 	model.armR.position.x = -sizes.bodyW / 2 - sizes.armW / 2
 	model.armR.position.y = sizes.legH + sizes.bodyH - sizes.armW / 2
-	mapUv(geometry, 0, 48, 12, 52, 0)	// right
-	mapUv(geometry, 1, 40, 12, 44, 0)	// left
-	mapUv(geometry, 2, 44, 16, 48, 12)	// top
-	mapUv(geometry, 3, 48, 16, 52, 12)	// bottom
-	mapUv(geometry, 4, 44, 12, 48, 0)	// front
-	mapUv(geometry, 5, 52, 12, 56, 0)	// back
+	mapUv(geometry, 0, 48, 12, 52, 0) // right
+	mapUv(geometry, 1, 40, 12, 44, 0) // left
+	mapUv(geometry, 2, 44, 16, 48, 12) // top
+	mapUv(geometry, 3, 48, 16, 52, 12) // bottom
+	mapUv(geometry, 4, 44, 12, 48, 0) // front
+	mapUv(geometry, 5, 52, 12, 56, 0) // back
 
 	// build model.armL
 	var geometry = new THREE.CubeGeometry(sizes.armW, sizes.armH, sizes.armD)
@@ -127,12 +124,12 @@ THREEx.MinecraftChar = function (skinUrl) {
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, -sizes.armH / 2 + sizes.armW / 2, 0));
 	model.armL.position.x = sizes.bodyW / 2 + sizes.armW / 2
 	model.armL.position.y = sizes.legH + sizes.bodyH - sizes.armW / 2
-	mapUv(geometry, 0, 44, 12, 40, 0)	// right
-	mapUv(geometry, 1, 52, 12, 48, 0)	// left
-	mapUv(geometry, 2, 44, 16, 48, 12)	// top
-	mapUv(geometry, 3, 48, 16, 52, 12)	// bottom
-	mapUv(geometry, 4, 48, 12, 44, 0)	// front
-	mapUv(geometry, 5, 56, 12, 52, 0)	// back
+	mapUv(geometry, 0, 44, 12, 40, 0) // right
+	mapUv(geometry, 1, 52, 12, 48, 0) // left
+	mapUv(geometry, 2, 44, 16, 48, 12) // top
+	mapUv(geometry, 3, 48, 16, 52, 12) // bottom
+	mapUv(geometry, 4, 48, 12, 44, 0) // front
+	mapUv(geometry, 5, 56, 12, 52, 0) // back
 
 	// build model.legR
 	var geometry = new THREE.CubeGeometry(sizes.legW, sizes.legH, sizes.legD)
@@ -141,12 +138,12 @@ THREEx.MinecraftChar = function (skinUrl) {
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, -sizes.legH / 2, 0));
 	model.legR.position.x = -sizes.legW / 2
 	model.legR.position.y = sizes.legH
-	mapUv(geometry, 0, 8, 12, 12, 0)	// right
-	mapUv(geometry, 1, 0, 12, 4, 0)	// left
-	mapUv(geometry, 2, 4, 16, 8, 12)	// top
-	mapUv(geometry, 3, 8, 16, 12, 12)	// bottom
-	mapUv(geometry, 4, 4, 12, 8, 0)	// front
-	mapUv(geometry, 5, 12, 12, 16, 0)	// back
+	mapUv(geometry, 0, 8, 12, 12, 0) // right
+	mapUv(geometry, 1, 0, 12, 4, 0) // left
+	mapUv(geometry, 2, 4, 16, 8, 12) // top
+	mapUv(geometry, 3, 8, 16, 12, 12) // bottom
+	mapUv(geometry, 4, 4, 12, 8, 0) // front
+	mapUv(geometry, 5, 12, 12, 16, 0) // back
 
 	// build model.legL
 	var geometry = new THREE.CubeGeometry(sizes.legW, sizes.legH, sizes.legD)
@@ -155,12 +152,12 @@ THREEx.MinecraftChar = function (skinUrl) {
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, -sizes.legH / 2, 0));
 	model.legL.position.x = sizes.legW / 2
 	model.legL.position.y = sizes.legH
-	mapUv(geometry, 0, 4, 12, 0, 0)	// left
-	mapUv(geometry, 1, 12, 12, 8, 0)	// right
-	mapUv(geometry, 2, 8, 16, 4, 12)	// top
-	mapUv(geometry, 3, 12, 16, 8, 12)	// bottom
-	mapUv(geometry, 4, 8, 12, 4, 0)	// front
-	mapUv(geometry, 5, 16, 12, 12, 0)	// back
+	mapUv(geometry, 0, 4, 12, 0, 0) // left
+	mapUv(geometry, 1, 12, 12, 8, 0) // right
+	mapUv(geometry, 2, 8, 16, 4, 12) // top
+	mapUv(geometry, 3, 12, 16, 8, 12) // bottom
+	mapUv(geometry, 4, 8, 12, 4, 0) // front
+	mapUv(geometry, 5, 16, 12, 12, 0) // back
 
 	return
 
@@ -169,24 +166,33 @@ THREEx.MinecraftChar = function (skinUrl) {
 		var tileUvH = 1 / 32;
 		if (geometry.faces[faceIdx] instanceof THREE.Face3) {
 			var UVs = geometry.faceVertexUvs[0][faceIdx * 2];
-			UVs[0].x = x1 * tileUvW; UVs[0].y = y1 * tileUvH;
-			UVs[1].x = x1 * tileUvW; UVs[1].y = y2 * tileUvH;
-			UVs[2].x = x2 * tileUvW; UVs[2].y = y1 * tileUvH;
+			UVs[0].x = x1 * tileUvW;
+			UVs[0].y = y1 * tileUvH;
+			UVs[1].x = x1 * tileUvW;
+			UVs[1].y = y2 * tileUvH;
+			UVs[2].x = x2 * tileUvW;
+			UVs[2].y = y1 * tileUvH;
 
 			var UVs = geometry.faceVertexUvs[0][faceIdx * 2 + 1];
-			UVs[0].x = x1 * tileUvW; UVs[0].y = y2 * tileUvH;
-			UVs[1].x = x2 * tileUvW; UVs[1].y = y2 * tileUvH;
-			UVs[2].x = x2 * tileUvW; UVs[2].y = y1 * tileUvH;
+			UVs[0].x = x1 * tileUvW;
+			UVs[0].y = y2 * tileUvH;
+			UVs[1].x = x2 * tileUvW;
+			UVs[1].y = y2 * tileUvH;
+			UVs[2].x = x2 * tileUvW;
+			UVs[2].y = y1 * tileUvH;
 		} else if (geometry.faces[faceIdx] instanceof THREE.Face4) {
 			var UVs = geometry.faceVertexUvs[0][faceIdx];
-			UVs[0].x = x1 * tileUvW; UVs[0].y = y1 * tileUvH;
-			UVs[1].x = x1 * tileUvW; UVs[1].y = y2 * tileUvH;
-			UVs[2].x = x2 * tileUvW; UVs[2].y = y2 * tileUvH;
-			UVs[3].x = x2 * tileUvW; UVs[3].y = y1 * tileUvH;
+			UVs[0].x = x1 * tileUvW;
+			UVs[0].y = y1 * tileUvH;
+			UVs[1].x = x1 * tileUvW;
+			UVs[1].y = y2 * tileUvH;
+			UVs[2].x = x2 * tileUvW;
+			UVs[2].y = y2 * tileUvH;
+			UVs[3].x = x2 * tileUvW;
+			UVs[3].y = y1 * tileUvH;
 		} else console.assert(false)
 	}
 }
-
 
 THREEx.MinecraftChar.baseUrl = '../'
 THREEx.MinecraftChar.defaultMaterial = THREE.MeshBasicMaterial
@@ -194,7 +200,7 @@ THREEx.MinecraftChar.defaultMaterial = THREE.MeshBasicMaterial
  * Load a skin
  *
  * @param {string} url the url of the skin image
-*/
+ */
 THREEx.MinecraftChar.prototype.loadSkin = function (url, onLoad) {
 	var image = new Image();
 	image.onload = function () {
@@ -203,9 +209,8 @@ THREEx.MinecraftChar.prototype.loadSkin = function (url, onLoad) {
 		onLoad && onLoad(this)
 	}.bind(this);
 	image.src = url;
-	return this;	// for chained API
+	return this; // for chained API
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////
 //		support for skin Well Known Url					//

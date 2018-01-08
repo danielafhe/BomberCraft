@@ -52,7 +52,6 @@ THREEx.MinecraftPlayer = function () {
 		} else {
 			bodyAnims.start('stand');
 		}
-
 	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		controls							//
@@ -132,7 +131,6 @@ THREEx.MinecraftPlayer = function () {
 		character.root.add(this._sayObject3D)
 	}
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////
 //		static function							//
