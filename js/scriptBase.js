@@ -6,6 +6,8 @@ require([
         'bowerComponents/threex.domevents/threex.linkify.js'
     ],
     function () {
+        let activo = false;
+
         var renderer = new THREE.WebGLRenderer({
             antialias: true
         });
@@ -115,13 +117,21 @@ require([
         player.character.root.position.z = 9
         scene.add(player.character.root)
         onRenderFcts.push(function (delta, now) {
-            player.update(delta, now)
+            player.update(delta, now);
+            if (activo) {
+                let posi = [player.character.root.rotation.y, player.character.root.rotation.x, player.character.root.rotation.z];
+                let pB = ajusteBomba(posi);
+                dae1.position.set(pB[0], pB[1], pB[2]);
+            }
+            
         })
 
         //////////////////////////////////////////////////////////////////////////////////
         //Se controla la posicion de las bombas
         loader = new THREE.ColladaLoader();
         var dae;
+        var dae;
+        var dae1;
 
         loader.load('collada/bomba3.dae', function colladaReady(collada) {
             dae = collada.scene;
@@ -136,13 +146,14 @@ require([
         });
         let posi = [1, 0, 1];
         loader.load('collada/bomba2.dae', function colladaReady(collada) {
-            
+
             let pB = ajusteBomba(posi);
-            dae = collada.scene;
-            dae.scale.set(0.02, 0.02, 0.02);
-            dae.position.set(pB[0], pB[1], pB[2]);
-            scene.add(dae);
+            dae1 = collada.scene;
+            dae1.scale.set(0.02, 0.02, 0.02);
+            dae1.position.set(pB[0], pB[1], pB[2]);
+            scene.add(dae1);
         });
+
 
 
         //////////////////////////////////////////////////////////////////////////////////
@@ -151,6 +162,7 @@ require([
         scene.add(cuboAux);
 
         onRenderFcts.push(function () {
+
             //var firstObject = player.character.root.children[0].children[0];
             var piernaDe = player.character.root.children[4];
             var piernaIz = player.character.root.children[5];
@@ -160,6 +172,7 @@ require([
             var collision = firstBB.intersectsBox(secondBB);
             if (collision) {
                 console.log("Colision True!!!!!!!!!!!!!!!!");
+                activo = true;
             } else {
                 console.log("Colision False!!!!!!!!!!!!!!!!");
             }
