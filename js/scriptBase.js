@@ -119,11 +119,12 @@ require([
         onRenderFcts.push(function (delta, now) {
             player.update(delta, now);
             if (activo) {
-                let posi = [player.character.root.rotation.y, player.character.root.rotation.x, player.character.root.rotation.z];
-                let pB = ajusteBomba(posi);
-                dae1.position.set(pB[0], pB[1], pB[2]);
+                let posi = [player.character.root.position.x, player.character.root.position.y, player.character.root.position.z];
+                //let pB = ajusteBomba(posi);
+                dae1.position.set(posi[0] - 3, posi[1], posi[2] + 1);
+                dae1.rotation.y = player.character.root.rotation.y;
             }
-            
+
         })
 
         //////////////////////////////////////////////////////////////////////////////////
@@ -145,12 +146,16 @@ require([
             scene.add(dae);
         });
         let posi = [1, 0, 1];
-        loader.load('collada/bomba2.dae', function colladaReady(collada) {
+        loader.load('collada/bomba3.dae', function colladaReady(collada) {
 
             let pB = ajusteBomba(posi);
             dae1 = collada.scene;
-            dae1.scale.set(0.02, 0.02, 0.02);
+            dae1.scale.set(0.002, 0.002, 0.002);
             dae1.position.set(pB[0], pB[1], pB[2]);
+
+            //dae1.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(pB[0], pB[1], pB[2]));
+            //dae1.geometry.translate(-2,-2,-2);
+            //dae1.position.set(0, 0, 0);
             scene.add(dae1);
         });
 
