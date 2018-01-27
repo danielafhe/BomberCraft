@@ -1,16 +1,3 @@
-function ajusteBomba(posicionNueva) {
-    let posicion = [-3.15, 0, 9.08];
-    posicion[0] += posicionNueva[0];
-    posicion[1] += posicionNueva[1];
-    posicion[2] += posicionNueva[2];
-
-    return posicion;
-}
-
-function ajusteCubo() {
-
-}
-
 function newCubeBomb(posicionNueva) {
     let posicion = [-0.02, 0, 8];
     posicion[0] += posicionNueva[0];
@@ -35,4 +22,10 @@ function newCubeBomb(posicionNueva) {
     //cubo.material.visible = false;
 
     return cubo;
+}
+
+function soltarBomba() {
+    bombaPrincipal.position.set(posicionPersonaje[0], posicionPersonaje[1], posicionPersonaje[2]);
+    bombaPrincipal.rotation.set(0, 0, 0);
+    bombaPrincipal.rotation.x = -1.6;
 }

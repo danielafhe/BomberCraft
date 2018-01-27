@@ -1,3 +1,8 @@
+let estaCerca = false;
+let cogido = false;
+var bombaPrincipal;
+let posicionPersonaje;
+
 require([
         'bowerComponents/threex.minecraft/package.require.js',
         'bowerComponents/threex.daynight/package.require.js',
@@ -118,21 +123,23 @@ require([
         scene.add(player.character.root)
         onRenderFcts.push(function (delta, now) {
             player.update(delta, now);
-            if (activo) {
-                let posi = [player.character.root.position.x, player.character.root.position.y, player.character.root.position.z];
-                //let pB = ajusteBomba(posi);
-                dae1.position.set(posi[0] - 3, posi[1], posi[2] + 1);
-                dae1.rotation.y = player.character.root.rotation.y;
+            if (cogido) {
+                posicionPersonaje = [player.character.root.position.x, player.character.root.position.y, player.character.root.position.z];
+                
+                bombaPrincipal.position.set(posicionPersonaje[0], posicionPersonaje[1], posicionPersonaje[2]);
+                bombaPrincipal.position.y = 0.5;
+                bombaPrincipal.rotation.x = player.character.root.rotation.x;
+                bombaPrincipal.rotation.y = player.character.root.rotation.y + 3.1;
+                
             }
 
         })
-
+        
         //////////////////////////////////////////////////////////////////////////////////
         //Se controla la posicion de las bombas
         loader = new THREE.ColladaLoader();
         var dae;
         var dae;
-        var dae1;
 
         loader.load('collada/bomba3.dae', function colladaReady(collada) {
             dae = collada.scene;
@@ -145,63 +152,35 @@ require([
             dae.scale.set(0.02, 0.02, 0.02);
             scene.add(dae);
         });
-        let posi = [1, 0, 1];
-        loader.load('collada/bomba3.dae', function colladaReady(collada) {
+        let posicionBomba = [1, 0, 1];
+        loader.load('collada/bomba3v2.dae', function colladaReady(collada) {
 
-            let pB = ajusteBomba(posi);
-            dae1 = collada.scene;
-            dae1.scale.set(0.002, 0.002, 0.002);
-            dae1.position.set(pB[0], pB[1], pB[2]);
-
-            //dae1.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(pB[0], pB[1], pB[2]));
-            //dae1.geometry.translate(-2,-2,-2);
-            //dae1.position.set(0, 0, 0);
-            scene.add(dae1);
+            bombaPrincipal = collada.scene;
+            bombaPrincipal.scale.set(0.01, 0.01, 0.01);
+            bombaPrincipal.position.set(posicionBomba[0], posicionBomba[1], posicionBomba[2]);
+            scene.add(bombaPrincipal);
         });
-
-
 
         //////////////////////////////////////////////////////////////////////////////////
         //Bucle para las colisiones
-        var cuboAux = newCubeBomb(posi);
-        scene.add(cuboAux);
 
         onRenderFcts.push(function () {
 
             //var firstObject = player.character.root.children[0].children[0];
             var piernaDe = player.character.root.children[4];
             var piernaIz = player.character.root.children[5];
-            var secondObject = cuboAux;
-            firstBB = new THREE.Box3().setFromObject(piernaIz);
-            secondBB = new THREE.Box3().setFromObject(secondObject);
+            var secondObject = bombaPrincipal;
+            let firstBB = new THREE.Box3().setFromObject(piernaIz);
+            let secondBB = new THREE.Box3().setFromObject(secondObject);
             var collision = firstBB.intersectsBox(secondBB);
             if (collision) {
-                console.log("Colision True!!!!!!!!!!!!!!!!");
-                activo = true;
+                //console.log("Colision True!!!!!!!!!!!!!!!!");
+                estaCerca = true;
             } else {
-                console.log("Colision False!!!!!!!!!!!!!!!!");
+                //console.log("Colision False!!!!!!!!!!!!!!!!");
+                estaCerca = false;
             }
         })
-
-
-        /*
-        onRenderFcts.push(function () {
-            for (var vertexIndex = 0; vertexIndex < player.character.root.children[0].children[0].geometry.vertices.length; vertexIndex++) {
-                var localVertex = player.character.root.children[0].children[0].geometry.vertices[vertexIndex].clone();
-                var globalVertex = player.character.root.children[0].children[0].matrix.applyMatrix4(localVertex);
-                var directionVector = globalVertex.sub(player.character.root.children[0].children[0].position);
-
-                var ray = new THREE.Ray(player.character.root.children[0].children[0].position, directionVector.clone().normalize());
-                var collisionResults = ray.intersectObjects(collidableMeshList);
-                if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
-                    // a collision occurred... do something...
-                }
-            }
-
-        })
-        */
-
-
 
         //////////////////////////////////////////////////////////////////////////////////
         //Controles de la camara
@@ -239,6 +218,8 @@ require([
             if (event.keyCode === 'Q'.charCodeAt(0)) input.strafeLeft = true
             if (event.keyCode === 'E'.charCodeAt(0)) input.strafeRight = true
             if (event.keyCode === 'C'.charCodeAt(0)) input.circularPunch = true
+            if (event.keyCode === 'F'.charCodeAt(0)) input.coger = true
+            if (event.keyCode === 'R'.charCodeAt(0)) input.soltar = true
         })
         document.body.addEventListener('keyup', function (event) {
             var input = player.controls.input
@@ -249,6 +230,8 @@ require([
             if (event.keyCode === 'Q'.charCodeAt(0)) input.strafeLeft = false
             if (event.keyCode === 'E'.charCodeAt(0)) input.strafeRight = false
             if (event.keyCode === 'C'.charCodeAt(0)) input.circularPunch = false
+            if (event.keyCode === 'F'.charCodeAt(0)) input.coger = false
+            if (event.keyCode === 'R'.charCodeAt(0)) input.soltar = false
         })
 
         //////////////////////////////////////////////////////////////////////////////////

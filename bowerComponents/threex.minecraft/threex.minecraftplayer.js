@@ -60,6 +60,24 @@ THREEx.MinecraftPlayer = function () {
 	this.controls = controls
 	updateFcts.push(function (delta, now) {
 		controls.update(delta, now)
+		var input = controls.input
+		if (input.coger) {
+			bodyAnims.start('circularPunch');
+			if (estaCerca) {
+				if (!cogido) {
+					cogido = true;
+				}
+			}
+		}
+		if (input.soltar) {
+			bodyAnims.start('circularPunch');
+			if (estaCerca) {
+				if (cogido) {
+					cogido = false;
+					soltarBomba();
+				}
+			}
+		}
 	})
 
 	//////////////////////////////////////////////////////////////////////////////////
