@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'minecraft';
+    src: url('../recursos/fonts/minecraft.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'minecraft';
+}

@@ -1,31 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>DanielCraft</title>
-	<script src='js/utilities.js'></script>
-	<script src='js/three.js'></script>
-	<script src='js/require.js'></script>
-	<script src='js/colladaLoader.js'></script>
-	
-	<script src='js/scriptBase.js'></script>
-
-	<link rel="stylesheet" href="css/stylePrincipal.css">
-	<link rel="stylesheet" href="css/styleSecundario.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="css/styleCompartido.css">
+    <link rel="stylesheet" href="css/styleIndex.css">
+    <title>Log BomberCraft</title>
 </head>
 
-<body style='margin: 0px; background-color: #bbbbbb; overflow: hidden;'>
+<body onload="cargar()">
+    <div class="page-bg">
+    </div>
 
-	<div id='infoButton'>
-		i
-	</div>
-	<div id='infoPopup' style='display: none;'>
-		Este es el peor Minecraft del mundo, pero almenos está hecho con cariño...
-		<br/>
-		<br/> FMD: Daniel Afonso
-	</div>
-	<script src='js/textos.js'></script>
+    <div id="formulario">
+        <div id="titulo">
+            <img src="recursos/titulo/bombercraft.png" alt="BomberCraft" />
+        </div>
+
+        <form id="formReg">
+            <p id="errorFormReg"></p>
+            <br> Nombre:
+            <input id="inputName" type="text" name="nombre" value="" required>
+            <br> Apellidos:
+            <input id="inputLastName" type="text" name="apellidos" value="" required>
+            <br> Correo:
+            <input id="inputEmail" type="email" name="correo" value="" required>
+            <br> Contraseña:
+            <input id="inputPass" type="password" name="contraseña" value="" required>
+            <br>
+            <input onclick="guardarUsuario()" type="submit" value="Enviar">
+        </form>
+
+        <form id="formLog">
+            <p id="errorFormLog"></p>
+            <br> Correo:
+            <input id="inputLogEmail" type="email" name="correo" value="" required>
+            <br> Contraseña:
+            <input id="inputLogPass" type="password" name="contraseña" value="" required>
+            <br>
+            <input onclick="loguearse()" type="submit" value="Enviar">
+        </form>
+    </div>
+
+    <script src="js/comprobaciones.js"></script>
 </body>
 
 </html>

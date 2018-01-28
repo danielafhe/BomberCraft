@@ -1,3 +1,4 @@
+let inicializado = false;
 let estaCerca = false;
 let cogido = false;
 var bombaPrincipal;
@@ -6,9 +7,7 @@ let posicionPersonaje;
 require([
         'bowerComponents/threex.minecraft/package.require.js',
         'bowerComponents/threex.daynight/package.require.js',
-        'bowerComponents/threex.windowresize/package.require.js',
-        'bowerComponents/threex.domevents/threex.domevents.js',
-        'bowerComponents/threex.domevents/threex.linkify.js'
+        'bowerComponents/threex.windowresize/package.require.js'
     ],
     function () {
         let activo = false;
@@ -125,16 +124,16 @@ require([
             player.update(delta, now);
             if (cogido) {
                 posicionPersonaje = [player.character.root.position.x, player.character.root.position.y, player.character.root.position.z];
-                
+
                 bombaPrincipal.position.set(posicionPersonaje[0], posicionPersonaje[1], posicionPersonaje[2]);
                 bombaPrincipal.position.y = 0.5;
                 bombaPrincipal.rotation.x = player.character.root.rotation.x;
                 bombaPrincipal.rotation.y = player.character.root.rotation.y + 3.1;
-                
+
             }
 
         })
-        
+
         //////////////////////////////////////////////////////////////////////////////////
         //Se controla la posicion de las bombas
         loader = new THREE.ColladaLoader();
@@ -159,6 +158,7 @@ require([
             bombaPrincipal.scale.set(0.01, 0.01, 0.01);
             bombaPrincipal.position.set(posicionBomba[0], posicionBomba[1], posicionBomba[2]);
             scene.add(bombaPrincipal);
+            inicializado = true;
         });
 
         //////////////////////////////////////////////////////////////////////////////////
@@ -166,19 +166,29 @@ require([
 
         onRenderFcts.push(function () {
 
-            //var firstObject = player.character.root.children[0].children[0];
-            var piernaDe = player.character.root.children[4];
-            var piernaIz = player.character.root.children[5];
-            var secondObject = bombaPrincipal;
-            let firstBB = new THREE.Box3().setFromObject(piernaIz);
-            let secondBB = new THREE.Box3().setFromObject(secondObject);
-            var collision = firstBB.intersectsBox(secondBB);
-            if (collision) {
-                //console.log("Colision True!!!!!!!!!!!!!!!!");
-                estaCerca = true;
-            } else {
-                //console.log("Colision False!!!!!!!!!!!!!!!!");
-                estaCerca = false;
+            if (inicializado) {
+                let collision = false;
+
+                var piernaDe = player.character.root.children[4];
+                var piernaIz = player.character.root.children[5];
+                var bombaPr = bombaPrincipal;
+
+                let piernaIzBox = new THREE.Box3().setFromObject(piernaIz);
+                let piernaDeBox = new THREE.Box3().setFromObject(piernaDe);
+                let bombaPrBox = new THREE.Box3().setFromObject(bombaPr);
+
+                if (piernaIzBox.intersectsBox(bombaPrBox))
+                    collision = true;
+                else if (piernaDeBox.intersectsBox(bombaPrBox))
+                    collision = true;
+
+                if (collision) {
+                    //console.log("Colision True!!!!!!!!!!!!!!!!");
+                    estaCerca = true;
+                } else {
+                    //console.log("Colision False!!!!!!!!!!!!!!!!");
+                    estaCerca = false;
+                }
             }
         })
 
