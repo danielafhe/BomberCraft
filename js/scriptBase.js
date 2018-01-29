@@ -148,7 +148,8 @@ require([
 
         loader.load('recursos/collada/androide.dae', function colladaReady(collada) {
             dae = collada.scene;
-            //dae.scale.set(0.0002, 0.0002, 0.0002);
+            dae.scale.set(0.2, 0.2, 0.2);
+            dae.position.set(0, 0.13, 0);
             scene.add(dae);
         });
 
