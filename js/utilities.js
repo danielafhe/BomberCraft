@@ -26,12 +26,11 @@ function cargarJson() {
         usersJson = [];
     }
 }
-
 function cargarUser() {
     usersJson.forEach(function (value, indice, array) {
         if (indice == userId) {
             userName = value.userName;
-            userSkin = value.skin;
+            userSkin = "recursos/skins/" + value.skin + ".png";
             userPoints = value.points;
         }
     })
