@@ -8,6 +8,7 @@ let user = {
 }
 
 function guardarUsuario() {
+    let valido = false;
     let email = $("#inputEmail").val();
 
     if (!buscarEmail(email)) {
@@ -19,22 +20,28 @@ function guardarUsuario() {
         })
 
         localStorage.setItem("usersJson", JSON.stringify(usersJson));
+        valido = true;
         $("#errorFormReg").html('');
     } else {
-        console.log($("#errorFormReg"))
+        console.log("Lo cambia");
         $("#errorFormReg").html('Ya hay un usuario registrado con ese correo.');
+        valido = false;
     }
+    return valido;
 }
 
 function loguearse() {
+    let valido = false;
     let email = $("#inputLogEmail").val();
     let pass =  $("#inputLogPass").val();
 
     if(buscarUsuario(email, pass)){
-        console.log("Log")
+        valido = true;
     } else {
-        console.log("No log")
+        $("#errorFormLog").html('No coincide con ningún usuario.');
+        valido = false;
     }
+    return valido;
 }
 
 function cargar() {

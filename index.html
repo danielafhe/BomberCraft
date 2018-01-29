@@ -20,7 +20,7 @@
             <img src="recursos/titulo/bombercraft.png" alt="BomberCraft" />
         </div>
 
-        <form id="formReg">
+        <form id="formReg" onsubmit="return guardarUsuario()">
             <p id="errorFormReg"></p>
             <br> Nombre:
             <input id="inputName" type="text" name="nombre" value="" required>
@@ -31,17 +31,17 @@
             <br> Contraseña:
             <input id="inputPass" type="password" name="contraseña" value="" required>
             <br>
-            <input onclick="guardarUsuario()" type="submit" value="Enviar">
+            <input type="submit" value="Enviar">
         </form>
 
-        <form id="formLog">
+        <form id="formLog" action="./play.html" onsubmit="return loguearse()">
             <p id="errorFormLog"></p>
             <br> Correo:
             <input id="inputLogEmail" type="email" name="correo" value="" required>
             <br> Contraseña:
             <input id="inputLogPass" type="password" name="contraseña" value="" required>
             <br>
-            <input onclick="loguearse()" type="submit" value="Enviar">
+            <input type="submit" value="Enviar">
         </form>
     </div>
 
