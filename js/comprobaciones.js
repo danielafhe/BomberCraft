@@ -1,5 +1,5 @@
 let usersJson;
-let id;
+let userId;
 
 let user = {
     name: "",
@@ -42,7 +42,7 @@ function loguearse() {
     if (buscarUsuario(email, pass)) {
         valido = true;
         //document.cookie = "email=" + encodeURIComponent(email);
-        document.cookie = "id=" + encodeURIComponent(id)+"; domain=noticias.miweb.com";
+        document.cookie = "userId=" + encodeURIComponent(userId)+"; domain=daniafonso.github.io/BomberCraft/play.html";
     } else {
         $("#errorFormLog").html('No coincide con ningún usuario.');
         valido = false;
@@ -79,7 +79,7 @@ function buscarUsuario(e, p) {
     usersJson.forEach(function (value, indice, array) {
         if (value.email == e && value.pass == p) {
             encontrado = true;
-            id = vale;
+            userId = vale;
         }
     })
     return encontrado;

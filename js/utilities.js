@@ -1,6 +1,12 @@
-function cargarUsuario () {
-    var lasCookies = document.cookie;
-    console.log(lasCookies);
+function readCookie(name) {
+    return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + name.replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+}
+
+function cargarUsuario() {
+    var miCookie = readCookie("userId");
+    //var lasCookies = document.cookie;
+    console.log("Pasando por las cookies");
+    console.log(miCookie);
 }
 
 function newCubeBomb(posicionNueva) {
@@ -34,4 +40,3 @@ function soltarBomba() {
     bombaPrincipal.rotation.set(0, 0, 0);
     bombaPrincipal.rotation.x = -1.6;
 }
-
