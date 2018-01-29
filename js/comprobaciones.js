@@ -41,8 +41,9 @@ function loguearse() {
 
     if (buscarUsuario(email, pass)) {
         valido = true;
-        //document.cookie = "email=" + encodeURIComponent(email);
-        document.cookie = "userId=" + encodeURIComponent(userId)+"; domain=daniafonso.github.io/BomberCraft/play.html";
+        //document.cookie = "userId=" + encodeURIComponent(userId) + ";expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=.daniafonso.github.io/BomberCraft";
+        var expiresdate = new Date(2068, 1, 02, 11, 20);
+        document.cookie = "userId=" + encodeURIComponent(userId) + "; expires=" + expiresdate.toUTCString() +"; domain=.daniafonso.github.io/BomberCraft";
     } else {
         $("#errorFormLog").html('No coincide con ningún usuario.');
         valido = false;
