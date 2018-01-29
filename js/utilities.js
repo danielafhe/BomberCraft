@@ -1,5 +1,4 @@
-let usersJson;
-let userID;
+let userIdRecuperado;
 
 function readCookie(name) {
     return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + name.replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
@@ -8,29 +7,15 @@ function readCookie(name) {
 function cargarUsuario() {
     var miCookie = readCookie("userId");
     //let id = miCookie.slice(6, 7);
-    userId = miCookie;
+    userIdRecuperado = miCookie;
     cargarJson();
     cargarUser();
     precargarDatosUser();
 }
 
-function cargarJson() {
-    let local;
-
-    local = localStorage.getItem("usersJson");
-    if (local != null) {
-        usersJson = JSON.parse(local);
-        //console.log(local);
-        usersJson.forEach(function (value, indice, array) {
-            //console.log(value.email);
-        })
-    } else {
-        usersJson = [];
-    }
-}
 function cargarUser() {
     usersJson.forEach(function (value, indice, array) {
-        if (indice == userId) {
+        if (indice == userIdRecuperado) {
             userName = value.userName;
             userSkin = "recursos/skins/" + value.skin + ".png";
             userPoints = value.points;
