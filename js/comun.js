@@ -1,7 +1,7 @@
 let usersJson;
 let userId;
 
-function cargar() {
+function cargarJson() {
     let local;
 
     local = localStorage.getItem("usersJson");
