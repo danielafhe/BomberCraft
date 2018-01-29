@@ -79,7 +79,7 @@ function buscarUsuario(e, p) {
     usersJson.forEach(function (value, indice, array) {
         if (value.email == e && value.pass == p) {
             encontrado = true;
-            userId = vale;
+            userId = value;
         }
     })
     return encontrado;
