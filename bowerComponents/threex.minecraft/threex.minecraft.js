@@ -7,8 +7,8 @@ var THREEx = THREEx || {};
  */
 THREEx.MinecraftChar = function (skinUrl) {
 	// set default arguments values
-	skinUrl = skinUrl || (THREEx.MinecraftChar.baseUrl + "images/char.png")
-
+	//skinUrl = skinUrl || (THREEx.MinecraftChar.baseUrl + "images/char.png")
+	skinUrl = skinUrl || (userSkin)
 	//////////////////////////////////////////////////////////////////////////////////
 	//		comment								//
 	//////////////////////////////////////////////////////////////////////////////////	
