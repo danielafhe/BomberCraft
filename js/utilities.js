@@ -10,6 +10,7 @@ function cargarUsuario() {
     //let id = miCookie.slice(6, 7);
     userId = miCookie;
     cargarJson();
+    cargarUser();
 }
 
 function cargarJson() {
