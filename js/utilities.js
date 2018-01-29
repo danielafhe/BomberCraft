@@ -4,7 +4,8 @@ function readCookie(name) {
 
 function cargarUsuario() {
     var miCookie = readCookie("userId");
-    console.log(miCookie);
+    let id = miCookie.slice(6, 7);
+    console.log(id);
 }
 
 function newCubeBomb(posicionNueva) {
