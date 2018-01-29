@@ -1,26 +1,18 @@
 let usersJson;
 let userId;
 
-let user = {
-    name: "",
-    lastName: "",
-    email: "",
-    pass: "",
-    skin: "",
-    puntos: ""
-}
-
 function guardarUsuario() {
     let valido = false;
     let email = $("#inputEmail").val();
 
     if (!buscarEmail(email)) {
         usersJson.push({
-            nombre: $("#inputName").val(),
+            userName: $("#inputName").val(),
             lastName: $("#inputLastName").val(),
             email: $("#inputEmail").val(),
             pass: $("#inputPass").val(),
-            skin: $("#seleccionarSkin").val()
+            skin: $("#seleccionarSkin").val(),
+            points: 0
         })
 
         localStorage.setItem("usersJson", JSON.stringify(usersJson));

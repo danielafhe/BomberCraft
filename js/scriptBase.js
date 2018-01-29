@@ -6,6 +6,7 @@ let posicionPersonaje;
 
 let userName;
 let userSkin;
+let userPoints;
 
 cargarUsuario();
 

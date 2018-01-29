@@ -1,3 +1,6 @@
+let usersJson;
+let userID;
+
 function readCookie(name) {
     return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + name.replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
 }
@@ -5,7 +8,33 @@ function readCookie(name) {
 function cargarUsuario() {
     var miCookie = readCookie("userId");
     //let id = miCookie.slice(6, 7);
-    console.log(miCookie);
+    userId = miCookie;
+    cargarJson();
+}
+
+function cargarJson() {
+    let local;
+
+    local = localStorage.getItem("usersJson");
+    if (local != null) {
+        usersJson = JSON.parse(local);
+        //console.log(local);
+        usersJson.forEach(function (value, indice, array) {
+            //console.log(value.email);
+        })
+    } else {
+        usersJson = [];
+    }
+}
+
+function cargarUser() {
+    usersJson.forEach(function (value, indice, array) {
+        if (indice == userId) {
+            userName = value.userName;
+            userSkin = value.skin;
+            userPoints = value.points;
+        }
+    })
 }
 
 function newCubeBomb(posicionNueva) {
