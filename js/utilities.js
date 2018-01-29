@@ -11,6 +11,7 @@ function cargarUsuario() {
     userId = miCookie;
     cargarJson();
     cargarUser();
+    actualizarPuntos();
 }
 
 function cargarJson() {
@@ -67,4 +68,8 @@ function soltarBomba() {
     bombaPrincipal.position.set(posicionPersonaje[0], posicionPersonaje[1], posicionPersonaje[2]);
     bombaPrincipal.rotation.set(0, 0, 0);
     bombaPrincipal.rotation.x = -1.6;
+}
+
+function actualizarPuntos () {
+    $("#userPoints").html('Puntos: ' + userPoints);
 }
