@@ -4,9 +4,7 @@ function readCookie(name) {
 
 function cargarUsuario() {
     var miCookie = readCookie("userId");
-    var lasCookies = document.cookie;
-    console.log("Pasando por las cookies 2");
-    console.log(lasCookies);
+    console.log(miCookie);
 }
 
 function newCubeBomb(posicionNueva) {
