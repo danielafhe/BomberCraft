@@ -1,3 +1,8 @@
+function cargarUsuario () {
+    var lasCookies = document.cookie;
+    console.log(lasCookies);
+}
+
 function newCubeBomb(posicionNueva) {
     let posicion = [-0.02, 0, 8];
     posicion[0] += posicionNueva[0];
@@ -29,3 +34,4 @@ function soltarBomba() {
     bombaPrincipal.rotation.set(0, 0, 0);
     bombaPrincipal.rotation.x = -1.6;
 }
+

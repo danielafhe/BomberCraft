@@ -20,6 +20,7 @@
             <img src="recursos/titulo/bombercraft.png" alt="BomberCraft" />
         </div>
 
+        <p>Registrarte:</p>
         <form id="formReg" onsubmit="return guardarUsuario()">
             <p id="errorFormReg"></p>
             <br> Nombre:
@@ -29,17 +30,26 @@
             <br> Correo:
             <input id="inputEmail" type="email" name="correo" value="" required>
             <br> Contraseña:
-            <input id="inputPass" type="password" name="contraseña" value="" required>
+            <input id="inputPass" type="password" name="contrasena" value="" required>
+            <br> Skin:
+            <select id="seleccionarSkin" name="selCombo" onChange="elegirSkin()">
+                <option selected value="android_noel">Android Noel</option>
+                <option value="papa_noel">Papa Noel</option>
+                <option value="spiderman">Spiderman</option>
+                <option value="steve_jobs">Steve Jobs</option>
+            </select>
             <br>
+            <img id="skinMin" src="" alt="Avatar del jugador">
             <input type="submit" value="Enviar">
         </form>
 
+        <p>Iniciar sesion:</p>
         <form id="formLog" action="./play.html" onsubmit="return loguearse()">
             <p id="errorFormLog"></p>
             <br> Correo:
             <input id="inputLogEmail" type="email" name="correo" value="" required>
             <br> Contraseña:
-            <input id="inputLogPass" type="password" name="contraseña" value="" required>
+            <input id="inputLogPass" type="password" name="contrasena" value="" required>
             <br>
             <input type="submit" value="Enviar">
         </form>

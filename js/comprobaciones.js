@@ -1,10 +1,13 @@
 let usersJson;
+let id;
 
 let user = {
     name: "",
     lastName: "",
     email: "",
-    pass: ""
+    pass: "",
+    skin: "",
+    puntos: ""
 }
 
 function guardarUsuario() {
@@ -16,7 +19,8 @@ function guardarUsuario() {
             nombre: $("#inputName").val(),
             lastName: $("#inputLastName").val(),
             email: $("#inputEmail").val(),
-            pass: $("#inputPass").val()
+            pass: $("#inputPass").val(),
+            skin: $("#seleccionarSkin").val()
         })
 
         localStorage.setItem("usersJson", JSON.stringify(usersJson));
@@ -33,10 +37,12 @@ function guardarUsuario() {
 function loguearse() {
     let valido = false;
     let email = $("#inputLogEmail").val();
-    let pass =  $("#inputLogPass").val();
+    let pass = $("#inputLogPass").val();
 
-    if(buscarUsuario(email, pass)){
+    if (buscarUsuario(email, pass)) {
         valido = true;
+        //document.cookie = "email=" + encodeURIComponent(email);
+        document.cookie = "id=" + encodeURIComponent(id)+"; domain=noticias.miweb.com";
     } else {
         $("#errorFormLog").html('No coincide con ningún usuario.');
         valido = false;
@@ -71,8 +77,15 @@ function buscarEmail(e) {
 function buscarUsuario(e, p) {
     let encontrado = false;
     usersJson.forEach(function (value, indice, array) {
-        if (value.email == e && value.pass == p)
+        if (value.email == e && value.pass == p) {
             encontrado = true;
+            id = vale;
+        }
     })
     return encontrado;
+}
+
+function elegirSkin() {
+    let seleccion = $("#seleccionarSkin").val();
+    $("#skinMin").attr("src", "recursos/skins/" + seleccion + "_min.png");
 }

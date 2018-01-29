@@ -1,8 +1,13 @@
 let inicializado = false;
 let estaCerca = false;
 let cogido = false;
-var bombaPrincipal;
+let bombaPrincipal;
 let posicionPersonaje;
+
+let userName;
+let userSkin;
+
+cargarUsuario();
 
 require([
         'bowerComponents/threex.minecraft/package.require.js',
