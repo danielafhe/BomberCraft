@@ -100,7 +100,7 @@ require([
 
         //////////////////////////////////////////////////////////////////////////////////
         //Texturas del suelo
-        var textureUrl = 'images/grasslight-small.jpg';
+        var textureUrl = 'recursos/suelo/grasslight-small.jpg';
         var texture = THREE.ImageUtils.loadTexture(textureUrl);
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
@@ -146,19 +146,19 @@ require([
         var dae;
         var dae;
 
-        loader.load('collada/bomba3.dae', function colladaReady(collada) {
+        loader.load('recursos/collada/androide.dae', function colladaReady(collada) {
             dae = collada.scene;
-            dae.scale.set(0.0002, 0.0002, 0.0002);
+            //dae.scale.set(0.0002, 0.0002, 0.0002);
             scene.add(dae);
         });
 
-        loader.load('collada/bomba2.dae', function colladaReady(collada) {
+        loader.load('recursos/collada/bomba2.dae', function colladaReady(collada) {
             dae = collada.scene;
             dae.scale.set(0.02, 0.02, 0.02);
             scene.add(dae);
         });
         let posicionBomba = [1, 0, 1];
-        loader.load('collada/bomba3v2.dae', function colladaReady(collada) {
+        loader.load('recursos/collada/bomba3v2.dae', function colladaReady(collada) {
 
             bombaPrincipal = collada.scene;
             bombaPrincipal.scale.set(0.01, 0.01, 0.01);
