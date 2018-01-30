@@ -1,1 +1,2 @@
-# DaniCraft
+# BomberCraft
+by Daniel Afonso

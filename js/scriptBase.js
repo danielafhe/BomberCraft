@@ -3,6 +3,10 @@ let estaCerca = false;
 let cogido = false;
 let bombaPrincipal;
 let posicionPersonaje;
+let cntAndroides = 5;
+let cntArboles = 50;
+let pstAndroides = [];
+let pstArboles = [];
 
 let userName;
 let userSkin;
@@ -143,23 +147,59 @@ require([
         //////////////////////////////////////////////////////////////////////////////////
         //Se controla la posicion de las bombas
         loader = new THREE.ColladaLoader();
-        var dae;
-        var dae;
 
         loader.load('recursos/collada/androide.dae', function colladaReady(collada) {
-            dae = collada.scene;
-            dae.scale.set(0.2, 0.2, 0.2);
-            dae.position.set(0, 0.13, 0);
-            scene.add(dae);
+            let androide = collada.scene;
+            androide.scale.set(0.2, 0.2, 0.2);
+            //androide.position.set(0, 0.13, 0);
+            //scene.add(androide);
+
+            for (let indi = 0; indi < cntAndroides; indi++) {
+                let clone = androide.clone(true);
+                //clone.scale.set(0.2, 0.2, 0.2);
+                clone.position.set(positionRandom(), 0.13, positionRandom());
+                let pos = [clone.position.x, clone.position.z]
+                if (!checkDistJusta(pos,10)) {
+                    scene.add(clone);
+                    pstAndroides.push(clone);
+                } else {
+                    indi--;
+                }
+            }
+        });
+        
+        loader.load('recursos/collada/tree.dae', function colladaReady(collada) {
+            let arbol = collada.scene;
+            arbol.scale.set(0.13, 0.13, 0.13);
+
+            for (let indi = 0; indi < cntArboles; indi++) {
+                let clone = arbol.clone(true);
+                clone.position.set(positionRandom(), 0, positionRandom());
+                let pos = [clone.position.x, clone.position.z]
+                if (!checkAll(pos, 3)) {
+                    scene.add(clone);
+                    pstArboles.push(clone);
+                } else {
+                    indi--;
+                }
+            }
         });
 
-        loader.load('recursos/collada/bomba2.dae', function colladaReady(collada) {
+        loader.load('recursos/collada/batman.dae', function colladaReady(collada) {
+            let arbol = collada.scene;
+            arbol.scale.set(0.013, 0.013, 0.013);
+            arbol.position.set(positionRandom(), -0.12, positionRandom());
+            scene.add(arbol);
+        });
+        /*
+        loader.load('recursos/collada/bombaRoja.dae', function colladaReady(collada) {
             dae = collada.scene;
             dae.scale.set(0.02, 0.02, 0.02);
             scene.add(dae);
         });
+        */
         let posicionBomba = [1, 0, 1];
-        loader.load('recursos/collada/bomba3v2.dae', function colladaReady(collada) {
+        loader.load('recursos/collada/bombaVerde.dae', function colladaReady(collada) {
 
             bombaPrincipal = collada.scene;
             bombaPrincipal.scale.set(0.01, 0.01, 0.01);
@@ -167,20 +207,22 @@ require([
             scene.add(bombaPrincipal);
             inicializado = true;
         });
-        
-/*
-        var runnerTexture = new THREE.ImageUtils.loadTexture('recursos/explosion/explosion.png');
-        annie = new TextureAnimator(runnerTexture, 10, 1, 10, 70); // texture, #horiz, #vert, #total, duration.
-        var runnerMaterial = new THREE.MeshBasicMaterial({
-            map: runnerTexture,
-            side: THREE.DoubleSide
-        });
-        var runnerGeometry = new THREE.PlaneGeometry(50, 50, 1, 1);
-        var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
-        runner.scale.set(0.1, 0.1, 0.1);
-        runner.position.set(0, 0, 0);
-        scene.add(runner);
-*/
+
+
+
+        /*
+                var runnerTexture = new THREE.ImageUtils.loadTexture('recursos/explosion/explosion.png');
+                annie = new TextureAnimator(runnerTexture, 10, 1, 10, 70); // texture, #horiz, #vert, #total, duration.
+                var runnerMaterial = new THREE.MeshBasicMaterial({
+                    map: runnerTexture,
+                    side: THREE.DoubleSide
+                });
+                var runnerGeometry = new THREE.PlaneGeometry(50, 50, 1, 1);
+                var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
+                runner.scale.set(0.1, 0.1, 0.1);
+                runner.position.set(0, 0, 0);
+                scene.add(runner);
+        */
         //////////////////////////////////////////////////////////////////////////////////
         //Bucle para las colisiones
 
@@ -197,6 +239,10 @@ require([
                 let piernaDeBox = new THREE.Box3().setFromObject(piernaDe);
                 let bombaPrBox = new THREE.Box3().setFromObject(bombaPr);
 
+                //console.log(bombaPrincipal.getWorldPosition());
+                //console.log(player.character.root.getWorldPosition());
+                //console.log(posicionesAdroides[0].getWorldPosition());
+
                 if (piernaIzBox.intersectsBox(bombaPrBox))
                     collision = true;
                 else if (piernaDeBox.intersectsBox(bombaPrBox))
@@ -205,9 +251,11 @@ require([
                 if (collision) {
                     //console.log("Colision True!!!!!!!!!!!!!!!!");
                     estaCerca = true;
+                    //posicionesAdroides[0].visible =false;
                 } else {
                     //console.log("Colision False!!!!!!!!!!!!!!!!");
                     estaCerca = false;
+                    //posicionesAdroides[0].visible = true;
                 }
             }
         })

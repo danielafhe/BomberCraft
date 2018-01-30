@@ -55,16 +55,69 @@ function soltarBomba() {
     bombaPrincipal.rotation.x = -1.6;
 }
 
-function precargarDatosUser () {
+function precargarDatosUser() {
     $("#userName").html(userName);
     $("#userPoints").html('Puntos: ' + userPoints);
 }
 
-function sumarPuntos (p) {
+function sumarPuntos(p) {
     userPoints += p;
     $("#userPoints").html('Puntos: ' + userPoints);
 }
 
+function positionRandom() {
+    return Math.random() * (22 - (-22)) + -22;
+}
+
+function checkDistJusta(b, d) {
+    let c = false;
+    if (checkPstDroid(b, d))
+        c = true;
+    return c;
+}
+
+function checkAll(b, d) {
+    let c = false;
+    if (checkPstTree(b, d))
+        c = true;
+    else if (checkPstDroid(b, d))
+        c = true;
+    return c;
+}
+
+function checkPstTree(b, d) {
+    let c = false;
+    for (var i in pstArboles) {
+        let a = [pstArboles[i].position.x, pstArboles[i].position.z];
+        if (estanCerca(a, b, d))
+            c = true;
+    }
+    return c;
+}
+
+function checkPstDroid(b, d) {
+    let c = false;
+    for (var i in pstAndroides) {
+        let a = [pstAndroides[i].position.x, pstAndroides[i].position.z];
+        if (estanCerca(a, b, d))
+            c = true;
+    }
+    return c;
+}
+
+function estanCerca(a, b, d) {
+    let c = false;
+
+    r0 = a[0] - b[0];
+    r1 = a[1] - b[1];
+    if (Math.abs(r0) < d && Math.abs(r1) < d) {
+        c = true;
+    }
+    console.log("R0: " + r0 + " // R1: " + r1);
+    return c;
+}
+
+/*
 function TextureAnimator(texture, tilesHoriz, tilesVert, numTiles, tileDispDuration) 
 {	
 	// note: texture passed by reference, will be updated by the update function.
@@ -102,4 +155,5 @@ function TextureAnimator(texture, tilesHoriz, tilesVert, numTiles, tileDispDurat
 			texture.offset.y = currentRow / this.tilesVertical;
 		}
 	};
-}		
+}
+*/
