@@ -168,6 +168,17 @@ require([
             inicializado = true;
         });
 
+        var runnerTexture = new THREE.ImageUtils.loadTexture('recursos/explosion/explosion.png');
+        annie = new TextureAnimator(runnerTexture, 10, 1, 10, 75); // texture, #horiz, #vert, #total, duration.
+        var runnerMaterial = new THREE.MeshBasicMaterial({
+            map: runnerTexture,
+            side: THREE.DoubleSide
+        });
+        var runnerGeometry = new THREE.PlaneGeometry(50, 50, 1, 1);
+        var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
+        runner.position.set(-100, 25, 0);
+        scene.add(runner);
+
         //////////////////////////////////////////////////////////////////////////////////
         //Bucle para las colisiones
 
