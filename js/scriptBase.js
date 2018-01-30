@@ -167,6 +167,7 @@ require([
             scene.add(bombaPrincipal);
             inicializado = true;
         });
+        
 /*
         var runnerTexture = new THREE.ImageUtils.loadTexture('recursos/explosion/explosion.png');
         annie = new TextureAnimator(runnerTexture, 10, 1, 10, 70); // texture, #horiz, #vert, #total, duration.
