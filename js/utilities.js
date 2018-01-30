@@ -113,7 +113,7 @@ function estanCerca(a, b, d) {
     if (Math.abs(r0) < d && Math.abs(r1) < d) {
         c = true;
     }
-    console.log("R0: " + r0 + " // R1: " + r1);
+    //console.log("R0: " + r0 + " // R1: " + r1);
     return c;
 }
 
