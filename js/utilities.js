@@ -53,6 +53,21 @@ function soltarBomba() {
     bombaPrincipal.position.set(posicionPersonaje[0], posicionPersonaje[1], posicionPersonaje[2]);
     bombaPrincipal.rotation.set(0, 0, 0);
     bombaPrincipal.rotation.x = -1.6;
+
+    setTimeout(function () {
+        let b = [bombaPrincipal.position.x, bombaPrincipal.position.z];
+        if(checkPstDroidDelete(b, 5)){
+            sumarPuntos(100);
+        }
+        if(checkPstPlayerDelete(b, 5)){
+            alert("Has muerto!!!");
+        }
+        explotarBomba();
+    }, 3000);
+}
+
+function explotarBomba() {
+    bombaPrincipal.position.set(posicionBombaInicial[0], posicionBombaInicial[1], posicionBombaInicial[2]);
 }
 
 function precargarDatosUser() {
@@ -66,7 +81,7 @@ function sumarPuntos(p) {
 }
 
 function positionRandom() {
-    return Math.random() * (22 - (-22)) + -22;
+    return Math.random() * (areaJuego - (-areaJuego)) + -areaJuego;
 }
 
 function checkDistJusta(b, d) {
@@ -78,9 +93,27 @@ function checkDistJusta(b, d) {
 
 function checkAll(b, d) {
     let c = false;
-    if (checkPstTree(b, d))
+    if (checkPstPlayer(b, 7)) {
+        c = true;
+    } else if (checkPstTree(b, d))
         c = true;
     else if (checkPstDroid(b, d))
+        c = true;
+    return c;
+}
+
+function checkPstPlayer(b, d) {
+    let c = false;
+    let a = [posicionSalidaPersonaje[0], posicionSalidaPersonaje[2]];
+    if (estanCerca(a, b, d))
+        c = true;
+    return c;
+}
+
+function checkPstPlayerDelete(b, d) {
+    let c = false;
+    let a = [posicionPersonaje[0], posicionPersonaje[2]];
+    if (estanCerca(a, b, d))
         c = true;
     return c;
 }
@@ -101,6 +134,18 @@ function checkPstDroid(b, d) {
         let a = [pstAndroides[i].position.x, pstAndroides[i].position.z];
         if (estanCerca(a, b, d))
             c = true;
+    }
+    return c;
+}
+
+function checkPstDroidDelete(b, d) {
+    let c = false;
+    for (var i in pstAndroides) {
+        let a = [pstAndroides[i].position.x, pstAndroides[i].position.z];
+        if (estanCerca(a, b, d)) {
+            c = true;
+            pstAndroides[i].visible = false;
+        }
     }
     return c;
 }

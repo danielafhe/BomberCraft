@@ -2,11 +2,15 @@ let inicializado = false;
 let estaCerca = false;
 let cogido = false;
 let bombaPrincipal;
+let posicionBombaInicial = [1, 0, 1];
+let posicionSalidaPersonaje = [0, 0, 3];
 let posicionPersonaje;
 let cntAndroides = 5;
-let cntArboles = 50;
+let cntArboles = 300;
 let pstAndroides = [];
 let pstArboles = [];
+let areaJuego = 100;
+
 
 let userName;
 let userSkin;
@@ -108,11 +112,11 @@ require([
         var texture = THREE.ImageUtils.loadTexture(textureUrl);
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.x = 10
-        texture.repeat.y = 10
+        texture.repeat.x = 100
+        texture.repeat.y = 100
         texture.anisotropy = 16;
 
-        var geometry = new THREE.CircleGeometry(30, 32)
+        var geometry = new THREE.CircleGeometry(300, 320)
         var material = new THREE.MeshPhongMaterial({
             map: texture,
         })
@@ -127,8 +131,8 @@ require([
 
         var player = new THREEx.MinecraftPlayer()
         player.character.root.rotation.y = Math.PI
-        player.character.root.position.x = 0
-        player.character.root.position.z = 9
+        player.character.root.position.x = posicionSalidaPersonaje[0];
+        player.character.root.position.z = posicionSalidaPersonaje[2];
         scene.add(player.character.root)
         onRenderFcts.push(function (delta, now) {
             player.update(delta, now);
@@ -145,7 +149,7 @@ require([
         })
 
         //////////////////////////////////////////////////////////////////////////////////
-        //Se controla la posicion de las bombas
+        //Se controla la posicion del los androides
         loader = new THREE.ColladaLoader();
 
         loader.load('recursos/collada/androide.dae', function colladaReady(collada) {
@@ -158,8 +162,8 @@ require([
                 let clone = androide.clone(true);
                 //clone.scale.set(0.2, 0.2, 0.2);
                 clone.position.set(positionRandom(), 0.13, positionRandom());
-                let pos = [clone.position.x, clone.position.z]
-                if (!checkDistJusta(pos,10)) {
+                let pos = [clone.position.x, clone.position.z];
+                if (!checkPstPlayer(pos, 1) && !checkDistJusta(pos, 10)) {
                     scene.add(clone);
                     pstAndroides.push(clone);
                 } else {
@@ -167,7 +171,7 @@ require([
                 }
             }
         });
-        
+
         loader.load('recursos/collada/tree.dae', function colladaReady(collada) {
             let arbol = collada.scene;
             arbol.scale.set(0.13, 0.13, 0.13);
@@ -175,7 +179,7 @@ require([
             for (let indi = 0; indi < cntArboles; indi++) {
                 let clone = arbol.clone(true);
                 clone.position.set(positionRandom(), 0, positionRandom());
-                let pos = [clone.position.x, clone.position.z]
+                let pos = [clone.position.x, clone.position.z];
                 if (!checkAll(pos, 3)) {
                     scene.add(clone);
                     pstArboles.push(clone);
@@ -198,12 +202,12 @@ require([
             scene.add(dae);
         });
         */
-        let posicionBomba = [1, 0, 1];
+        
         loader.load('recursos/collada/bombaVerde.dae', function colladaReady(collada) {
 
             bombaPrincipal = collada.scene;
             bombaPrincipal.scale.set(0.01, 0.01, 0.01);
-            bombaPrincipal.position.set(posicionBomba[0], posicionBomba[1], posicionBomba[2]);
+            bombaPrincipal.position.set(posicionBombaInicial[0], posicionBombaInicial[1], posicionBombaInicial[2]);
             scene.add(bombaPrincipal);
             inicializado = true;
         });
