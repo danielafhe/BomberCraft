@@ -5,11 +5,11 @@ let bombaPrincipal;
 let posicionBombaInicial = [1, 0, 1];
 let posicionSalidaPersonaje = [0, 0, 3];
 let posicionPersonaje;
-let cntAndroides = 5;
+let cntAndroides = 53;
 let cntArboles = 300;
 let pstAndroides = [];
 let pstArboles = [];
-let areaJuego = 100;
+let areaJuego = 50;
 
 
 let userName;
@@ -143,7 +143,6 @@ require([
                 bombaPrincipal.position.y = 0.5;
                 bombaPrincipal.rotation.x = player.character.root.rotation.x;
                 bombaPrincipal.rotation.y = player.character.root.rotation.y + 3.1;
-
             }
 
         })
@@ -181,7 +180,7 @@ require([
                 clone.position.set(positionRandom(), 0, positionRandom());
                 let pos = [clone.position.x, clone.position.z];
                 if (!checkAll(pos, 3)) {
-                    scene.add(clone);
+                    //scene.add(clone);
                     pstArboles.push(clone);
                 } else {
                     indi--;

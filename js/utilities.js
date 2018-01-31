@@ -50,20 +50,24 @@ function newCubeBomb(posicionNueva) {
 }
 
 function soltarBomba() {
-    bombaPrincipal.position.set(posicionPersonaje[0], posicionPersonaje[1], posicionPersonaje[2]);
+    let x = posicionPersonaje[0];
+    let z = posicionPersonaje[2];
+
+    bombaPrincipal.position.set(x, 0, z);
     bombaPrincipal.rotation.set(0, 0, 0);
     bombaPrincipal.rotation.x = -1.6;
+    cogido = false;
 
     setTimeout(function () {
-        let b = [bombaPrincipal.position.x, bombaPrincipal.position.z];
-        if(checkPstDroidDelete(b, 5)){
+        let ps = [bombaPrincipal.position.x, bombaPrincipal.position.z];
+        if (checkPstDroidDelete(ps, 5)) {
             sumarPuntos(100);
         }
-        if(checkPstPlayerDelete(b, 5)){
+        if (checkPstPlayerDelete(ps, 1)) {
             alert("Has muerto!!!");
         }
         explotarBomba();
-    }, 3000);
+    }, 5000);
 }
 
 function explotarBomba() {
@@ -113,6 +117,7 @@ function checkPstPlayer(b, d) {
 function checkPstPlayerDelete(b, d) {
     let c = false;
     let a = [posicionPersonaje[0], posicionPersonaje[2]];
+
     if (estanCerca(a, b, d))
         c = true;
     return c;
@@ -139,12 +144,16 @@ function checkPstDroid(b, d) {
 }
 
 function checkPstDroidDelete(b, d) {
+    console.log(cogido);
     let c = false;
     for (var i in pstAndroides) {
         let a = [pstAndroides[i].position.x, pstAndroides[i].position.z];
         if (estanCerca(a, b, d)) {
             c = true;
             pstAndroides[i].visible = false;
+            console.log(a);
+            console.log(b);
+            console.log(posicionPersonaje);
         }
     }
     return c;
