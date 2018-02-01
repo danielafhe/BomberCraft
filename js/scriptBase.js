@@ -181,7 +181,7 @@ require([
                 clone.position.set(positionRandom() - 3, 0, positionRandom() + 3);
                 let pos = [clone.position.x, clone.position.z];
                 if (!checkAll(pos, 3)) {
-                    //scene.add(clone);
+                    scene.add(clone);
                     pstArboles.push(clone);
                     //THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB(clone));
                 } else {
