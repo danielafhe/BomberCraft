@@ -5,7 +5,7 @@ THREEx.MinecraftControls = function (object3d, input) {
 	input = input || {}
 
 	// handle arguments default values
-	this.speed = 2;
+	this.speed = 8;
 	this.input = input;
 	this.object3d = object3d;
 
