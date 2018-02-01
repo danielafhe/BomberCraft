@@ -59,9 +59,13 @@ function soltarBomba() {
         let ps = [bombaPrincipal.position.x, bombaPrincipal.position.z];
         if (checkPstDroidDelete(ps, 2)) {
             sumarPuntos(100);
+            cntAndroides--;
         }
         if (checkPstPlayerDelete(ps, 2)) {
             alert("Has muerto!!!");
+        }
+        if(cntAndroides <= 0){
+            alert("Has eliminado a todos los objetivos!!");
         }
         explotarBomba();
     }, 5000);
@@ -98,7 +102,7 @@ function checkAll(b, d) {
         c = true;
     } else if (checkPstTree(b, d))
         c = true;
-    else if (checkPstDroid(b, d))
+    else if (checkPstDroid(b, 6))
         c = true;
     return c;
 }
@@ -148,9 +152,9 @@ function checkPstDroidDelete(b, d) {
         if (estanCerca(a, b, d)) {
             c = true;
             pstAndroides[i].visible = false;
-            console.log(a);
-            console.log(b);
-            console.log(posicionPersonaje);
+            //console.log(a);
+            //console.log(b);
+            //console.log(posicionPersonaje);
         }
     }
     return c;

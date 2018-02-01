@@ -2,7 +2,7 @@ let inicializado = false;
 let estaCerca = false;
 let cogido = false;
 let bombaPrincipal;
-let posicionBombaInicial = [1, 0, 1];
+let posicionBombaInicial = [0, 0, 0];
 let posicionSalidaPersonaje = [0, 0, 3];
 let posicionPersonaje;
 let cntAndroides = 3;
@@ -161,7 +161,7 @@ require([
                 //clone.scale.set(0.2, 0.2, 0.2);
                 clone.position.set(positionRandom(), 0.13, positionRandom());
                 let pos = [clone.position.x, clone.position.z];
-                if (!checkPstPlayer(pos, 1) && !checkDistJusta(pos, 10)) {
+                if (!checkPstPlayer(pos, 20) && !checkDistJusta(pos, 15)) {
                     scene.add(clone);
                     pstAndroides.push(clone);
                 } else {
@@ -173,14 +173,17 @@ require([
         loader.load('recursos/collada/tree.dae', function colladaReady(collada) {
             let arbol = collada.scene;
             arbol.scale.set(0.13, 0.13, 0.13);
+            //arbol.position.set(-3, 0, 3);
+            //scene.add(arbol);
 
             for (let indi = 0; indi < cntArboles; indi++) {
                 let clone = arbol.clone(true);
-                clone.position.set(positionRandom(), 0, positionRandom());
+                clone.position.set(positionRandom() - 3, 0, positionRandom() + 3);
                 let pos = [clone.position.x, clone.position.z];
                 if (!checkAll(pos, 3)) {
                     //scene.add(clone);
                     pstArboles.push(clone);
+                    //THREE.Collisions.colliders.push(THREE.CollisionUtils.MeshOBB(clone));
                 } else {
                     indi--;
                 }
@@ -200,7 +203,7 @@ require([
             scene.add(dae);
         });
         */
-        
+
         loader.load('recursos/collada/bombaVerde.dae', function colladaReady(collada) {
 
             bombaPrincipal = collada.scene;
