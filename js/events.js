@@ -11,6 +11,8 @@ let pstArboles = [];
 
 let areaJuego = 50;
 
+let nivel = 0;
+
 function soltarBomba() {
     bombaPrincipal.position.set(posicionPersonaje[0], 0, posicionPersonaje[2]);
     bombaPrincipal.rotation.set(0, 0, 0);
@@ -28,7 +30,8 @@ function soltarBomba() {
         }
         if (cntAndroides <= 0) {
             alert("Has eliminado a todos los objetivos!!");
-            cambiarNivel(2);
+            nivel++;
+            cambiarNivel(nivel);
         }
         explotarBomba();
     }, 5000);
@@ -40,9 +43,9 @@ function explotarBomba() {
 
 function cambiarNivel(n) {
     let niveles = [
-        [1, 10],
+        [1, 100],
         [2, 140],
-        [3, 2],
+        [3, 170],
         [5, 200],
         [7, 300],
         [10, 300]
