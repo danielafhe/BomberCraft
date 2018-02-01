@@ -34,7 +34,7 @@ function soltarBomba() {
             cambiarNivel(nivel);
         }
         explotarBomba();
-    }, 5000);
+    }, 3000);
 }
 
 function explotarBomba() {
@@ -103,6 +103,10 @@ function cambiarNivel(n) {
         }
     });
 
+
+}
+
+function addBombaBat() {
     loader.load('recursos/collada/batman.dae', function colladaReady(collada) {
         let arbol = collada.scene;
         arbol.scale.set(0.013, 0.013, 0.013);
