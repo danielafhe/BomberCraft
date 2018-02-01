@@ -50,20 +50,17 @@ function newCubeBomb(posicionNueva) {
 }
 
 function soltarBomba() {
-    let x = posicionPersonaje[0];
-    let z = posicionPersonaje[2];
-
-    bombaPrincipal.position.set(x, 0, z);
+    bombaPrincipal.position.set(posicionPersonaje[0], 0, posicionPersonaje[2]);
     bombaPrincipal.rotation.set(0, 0, 0);
     bombaPrincipal.rotation.x = -1.6;
     cogido = false;
 
     setTimeout(function () {
         let ps = [bombaPrincipal.position.x, bombaPrincipal.position.z];
-        if (checkPstDroidDelete(ps, 5)) {
+        if (checkPstDroidDelete(ps, 2)) {
             sumarPuntos(100);
         }
-        if (checkPstPlayerDelete(ps, 1)) {
+        if (checkPstPlayerDelete(ps, 2)) {
             alert("Has muerto!!!");
         }
         explotarBomba();

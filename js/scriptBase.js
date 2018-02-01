@@ -5,7 +5,7 @@ let bombaPrincipal;
 let posicionBombaInicial = [1, 0, 1];
 let posicionSalidaPersonaje = [0, 0, 3];
 let posicionPersonaje;
-let cntAndroides = 53;
+let cntAndroides = 3;
 let cntArboles = 300;
 let pstAndroides = [];
 let pstArboles = [];
@@ -136,9 +136,8 @@ require([
         scene.add(player.character.root)
         onRenderFcts.push(function (delta, now) {
             player.update(delta, now);
+            posicionPersonaje = [player.character.root.position.x, player.character.root.position.y, player.character.root.position.z];
             if (cogido) {
-                posicionPersonaje = [player.character.root.position.x, player.character.root.position.y, player.character.root.position.z];
-
                 bombaPrincipal.position.set(posicionPersonaje[0], posicionPersonaje[1], posicionPersonaje[2]);
                 bombaPrincipal.position.y = 0.5;
                 bombaPrincipal.rotation.x = player.character.root.rotation.x;
