@@ -45,16 +45,14 @@ body {
     flex-wrap: wrap;
 }
 
-#scores > * > *
-{
+#scores>*>* {
     width: 100%;
     margin: 10px;
     display: flex;
-    
     border-bottom: 2px solid #4C4C4C;
 }
-#scores > * > * > *
-{
+
+#scores>*>*>* {
     width: 100%;
     margin: 10px;
     display: flex;
@@ -62,7 +60,7 @@ body {
     align-content: space-between;
 }
 
-#volver{
+#volver {
     margin: 40px;
 }
 
