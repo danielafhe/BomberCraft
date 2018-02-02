@@ -137,23 +137,11 @@ require([
         })
 
         //////////////////////////////////////////////////////////////////////////////////
-        cambiarNivel(userLevel);
+        cambiarNivel(0);
         addBombaBat();
 
 
-        /*
-                var runnerTexture = new THREE.ImageUtils.loadTexture('recursos/explosion/explosion.png');
-                annie = new TextureAnimator(runnerTexture, 10, 1, 10, 70); // texture, #horiz, #vert, #total, duration.
-                var runnerMaterial = new THREE.MeshBasicMaterial({
-                    map: runnerTexture,
-                    side: THREE.DoubleSide
-                });
-                var runnerGeometry = new THREE.PlaneGeometry(50, 50, 1, 1);
-                var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
-                runner.scale.set(0.1, 0.1, 0.1);
-                runner.position.set(0, 0, 0);
-                scene.add(runner);
-        */
+        
         //////////////////////////////////////////////////////////////////////////////////
         //Bucle para las colisiones
 

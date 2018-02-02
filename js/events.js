@@ -1,3 +1,6 @@
+var milisec = 0
+var seconds = 0
+
 let bombaPrincipal;
 let posicionBombaInicial = [0, 0, 0];
 let posicionSalidaPersonaje = [-1, 0, 3];
@@ -26,6 +29,7 @@ function soltarBomba() {
         }
         if (checkPstPlayerDelete(ps, 2)) {
             alert("Has muerto!!!");
+            cambiarNivel(userLevel);
         }
         if (cntAndroides <= 0) {
             alert("Has eliminado a todos los objetivos!!");
@@ -130,3 +134,30 @@ function addBombaBat() {
         inicializado = true;
     });
 }
+
+$("#time").html('0');
+
+function display() {
+    if (milisec >= 9) {
+        milisec = 0
+        seconds += 1
+    } else
+        milisec += 1
+    $("#time").html("Segundos: " + seconds);
+    setTimeout("display()", 100)
+}
+display()
+
+/*
+    var runnerTexture = new THREE.ImageUtils.loadTexture('recursos/explosion/explosion.png');
+    annie = new TextureAnimator(runnerTexture, 10, 1, 10, 70); // texture, #horiz, #vert, #total, duration.
+    var runnerMaterial = new THREE.MeshBasicMaterial({
+        map: runnerTexture,
+        side: THREE.DoubleSide
+    });
+    var runnerGeometry = new THREE.PlaneGeometry(50, 50, 1, 1);
+    var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
+    runner.scale.set(0.1, 0.1, 0.1);
+    runner.position.set(0, 0, 0);
+    scene.add(runner);
+*/
