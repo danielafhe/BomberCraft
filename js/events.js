@@ -24,7 +24,7 @@ function soltarBomba() {
         let ps = [bombaPrincipal.position.x, bombaPrincipal.position.z];
         if (checkPstDroidDelete(ps, 2)) {
             let tiempoMuerteEstimado = 30;
-            let puntosSumar = 100;
+            let puntosSumar = 25;
             if (seconds < tiempoMuerteEstimado)
                 puntosSumar += (tiempoMuerteEstimado - seconds);
             sumarPuntos(100);
