@@ -20,18 +20,20 @@
             <img src="recursos/titulo/bombercraft.png" alt="BomberCraft" />
         </div>
 
-        <input type="button" value="Puntuaciones" onclick="window.location.href='./scores.html'"
-        />
+        <div id="scores">
+            <input class="button" type="button" value="Puntuaciones" onclick="window.location.href='./scores.html'" />
+        </div>
+
 
         <p>Iniciar sesion:</p>
         <form id="formLog" action="./play.html" onsubmit="return loguearse()">
             <p id="errorFormLog"></p>
             <br> Correo:
-            <input id="inputLogEmail" type="email"  value="" required>
+            <input id="inputLogEmail" type="email" value="" required>
             <br> Contraseña:
             <input id="inputLogPass" type="password" value="" required>
             <br>
-            <input type="submit" value="Enviar">
+            <input class="button" type="submit" value="Enviar">
         </form>
 
         <p>Registrarte:</p>
@@ -56,10 +58,10 @@
             </select>
             <br>
             <img id="skinMin" src="" alt="Avatar del jugador">
-            <input type="submit" value="Enviar">
+            <input class="button" type="submit" value="Enviar">
         </form>
 
-        
+
     </div>
 
     <script src="js/comun.js"></script>
