@@ -36,7 +36,8 @@ function actualizarUser() {
             value.points = userPoints;
             value.level = userLevel;
         }
-    })
+    });
+    localStorage.setItem("usersJson", JSON.stringify(usersJson));
 }
 
 function precargarDatosUser() {
