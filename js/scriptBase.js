@@ -229,6 +229,7 @@ require([
             if (event.keyCode === 'C'.charCodeAt(0)) input.circularPunch = true
             if (event.keyCode === 'F'.charCodeAt(0)) input.coger = true
             if (event.keyCode === 'R'.charCodeAt(0)) input.soltar = true
+            if (event.keyCode === 'P'.charCodeAt(0)) alert("Juego en pausa");
         })
         document.body.addEventListener('keyup', function (event) {
             var input = player.controls.input

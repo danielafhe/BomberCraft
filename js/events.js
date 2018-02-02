@@ -3,8 +3,8 @@ let posicionBombaInicial = [0, 0, 0];
 let posicionSalidaPersonaje = [-1, 0, 3];
 let posicionPersonaje;
 
-let cntAndroides = 3;
-let cntArboles = 300;
+let cntAndroides;
+let cntArboles;
 
 let pstAndroides = [];
 let pstArboles = [];
@@ -24,6 +24,7 @@ function soltarBomba() {
         if (checkPstDroidDelete(ps, 2)) {
             sumarPuntos(100);
             cntAndroides--;
+            actualizarCantidadAndroides();
         }
         if (checkPstPlayerDelete(ps, 2)) {
             alert("Has muerto!!!");
@@ -31,6 +32,7 @@ function soltarBomba() {
         if (cntAndroides <= 0) {
             alert("Has eliminado a todos los objetivos!!");
             nivel++;
+            actualizarUser();
             cambiarNivel(nivel);
         }
         explotarBomba();
@@ -59,6 +61,8 @@ function cambiarNivel(n) {
 
     player.character.root.position.x = posicionSalidaPersonaje[0];
     player.character.root.position.z = posicionSalidaPersonaje[2];
+
+    actualizarCantidadAndroides();
 
     //Se controla la posicion del los androides
     loader = new THREE.ColladaLoader();
@@ -102,8 +106,6 @@ function cambiarNivel(n) {
             }
         }
     });
-
-
 }
 
 function addBombaBat() {

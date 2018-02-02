@@ -23,6 +23,17 @@
         <input type="button" value="Puntuaciones" onclick="window.location.href='./scores.html'"
         />
 
+        <p>Iniciar sesion:</p>
+        <form id="formLog" action="./play.html" onsubmit="return loguearse()">
+            <p id="errorFormLog"></p>
+            <br> Correo:
+            <input id="inputLogEmail" type="email" name="correo" value="" required>
+            <br> Contraseña:
+            <input id="inputLogPass" type="password" name="contrasena" value="" required>
+            <br>
+            <input type="submit" value="Enviar">
+        </form>
+
         <p>Registrarte:</p>
         <form id="formReg" onsubmit="return guardarUsuario()">
             <p id="errorFormReg"></p>
@@ -46,16 +57,7 @@
             <input type="submit" value="Enviar">
         </form>
 
-        <p>Iniciar sesion:</p>
-        <form id="formLog" action="./play.html" onsubmit="return loguearse()">
-            <p id="errorFormLog"></p>
-            <br> Correo:
-            <input id="inputLogEmail" type="email" name="correo" value="" required>
-            <br> Contraseña:
-            <input id="inputLogPass" type="password" name="contrasena" value="" required>
-            <br>
-            <input type="submit" value="Enviar">
-        </form>
+        
     </div>
 
     <script src="js/comun.js"></script>

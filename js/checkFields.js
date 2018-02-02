@@ -9,7 +9,8 @@ function guardarUsuario() {
             email: $("#inputEmail").val(),
             pass: $("#inputPass").val(),
             skin: $("#seleccionarSkin").val(),
-            points: 0
+            points: 0,
+            level: 0
         })
 
         localStorage.setItem("usersJson", JSON.stringify(usersJson));
