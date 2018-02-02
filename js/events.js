@@ -19,29 +19,31 @@ function soltarBomba() {
     bombaPrincipal.rotation.set(0, 0, 0);
     bombaPrincipal.rotation.x = -1.6;
     cogido = false;
+    let ocurrido = 0;
+    let puntosSumar = 25;
+    let tiempoMuerteEstimado = 30;
 
     setTimeout(function () {
         let ps = [bombaPrincipal.position.x, bombaPrincipal.position.z];
-        if (checkPstDroidDelete(ps, 2)) {
-            let tiempoMuerteEstimado = 30;
-            let puntosSumar = 25;
+        if (checkPstPlayerDelete(ps, 2)) {
+            cambiarNivel(userLevel);
+            ocurrido = 1;
+        } else if (checkPstDroidDelete(ps, 2)) {
             if (seconds < tiempoMuerteEstimado)
                 puntosSumar += (tiempoMuerteEstimado - seconds);
-            sumarPuntos(100);
+            sumarPuntos(puntosSumar);
             cntAndroides--;
             actualizarCantidadAndroides();
-        }
-        if (checkPstPlayerDelete(ps, 2)) {
-            alert("Has muerto!!!");
-            cambiarNivel(userLevel);
-        }
-        if (cntAndroides <= 0) {
-            alert("Has eliminado a todos los objetivos!!");
-            userLevel++;
-            actualizarUser();
-            cambiarNivel(userLevel);
+            ocurrido = 2;
+            if (cntAndroides <= 0) {
+                userLevel++;
+                actualizarUser();
+                cambiarNivel(userLevel);
+                ocurrido = 3;
+            }
         }
         explotarBomba();
+        elegirMensaje(ocurrido);
     }, 3000);
 }
 
@@ -54,12 +56,15 @@ function explotarBomba() {
 function cambiarNivel(n) {
     let niveles = [
         [1, 100],
-        [2, 140],
-        [3, 170],
-        [5, 200],
-        [7, 300],
-        [10, 300]
+        [2, 140]
     ];
+
+    if(n > niveles.length){
+        mostrarMensaje("Enhorabuena, te has pasado el juego, vuelves al nivel 1.");
+        userLevel = 0;
+        n = 0;
+    }
+
     borrarArrayScena(pstAndroides);
     borrarArrayScena(pstArboles);
     pstAndroides = [];
@@ -67,6 +72,7 @@ function cambiarNivel(n) {
     cntAndroides = niveles[n][0];
     cntArboles = niveles[n][1];
 
+    player.character.root.rotation.y = Math.PI;
     player.character.root.position.x = posicionSalidaPersonaje[0];
     player.character.root.position.z = posicionSalidaPersonaje[2];
 
@@ -141,6 +147,7 @@ function addBombaBat() {
     });
 }
 var showSec;
+
 function showSeconds() {
     if (milisec >= 9) {
         milisec = 0
@@ -151,8 +158,8 @@ function showSeconds() {
     showSec = setTimeout("showSeconds()", 100)
 }
 
-function stopShowSec(){
-    if(showSec){
+function stopShowSec() {
+    if (showSec) {
         clearTimeout(showSec);
         $("#time").html("Segundos: " + seconds);
     }

@@ -18,6 +18,8 @@ function cargarUsuario() {
     //If trampas o modo local
     if (userLevel == undefined)
         userLevel = 0;
+    if (userPoints == undefined)
+        userPoints = 0;
     precargarDatosUser();
 }
 
@@ -45,7 +47,7 @@ function actualizarUser() {
 
 function precargarDatosUser() {
     $("#userGamertag").html(gamertag);
-    $("#userLevel").html("Nivel: " + userLevel);
+    $("#userLevel").html("Nivel: " + (userLevel + 1));
     $("#userPoints").html('Puntos: ' + userPoints);
 }
 

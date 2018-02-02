@@ -1,23 +1,45 @@
 function positionRandom() {
-    return Math.random() * (areaJuego - (-areaJuego)) + -areaJuego;
+	return Math.random() * (areaJuego - (-areaJuego)) + -areaJuego;
 }
 
 function estanCerca(a, b, d) {
-    let c = false;
+	let c = false;
 
-    r0 = a[0] - b[0];
-    r1 = a[1] - b[1];
-    if (Math.abs(r0) < d && Math.abs(r1) < d) {
-        c = true;
-    }
-    //console.log("R0: " + r0 + " // R1: " + r1);
-    return c;
+	r0 = a[0] - b[0];
+	r1 = a[1] - b[1];
+	if (Math.abs(r0) < d && Math.abs(r1) < d) {
+		c = true;
+	}
+	//console.log("R0: " + r0 + " // R1: " + r1);
+	return c;
 }
 
 function borrarArrayScena(arr) {
-    arr.forEach(element => {
-        scene.remove(element);
-    });
+	arr.forEach(element => {
+		scene.remove(element);
+	});
+}
+
+function elegirMensaje(o) {
+	let mensajes = [
+		"La bomba no ha tocado a nadie.",
+		"Has muerto, recuerda alejarte al soltar la bomba.",
+		"Has eliminado a un objetivo, restantes: " + cntAndroides,
+		"Has eliminado todos los objetivos, pasas al nivel " + userLevel,
+		"Has matado a Batman, esperamos que te hayas quedado a gusto.",
+		"Has golpeado a Batman, ganas 500 puntos."
+	];
+	mostrarMensaje(mensajes[o]);
+}
+
+function mostrarMensaje(m) {
+	var element = document.querySelector('#textDiv');
+	element.textContent = "Información: " + m;
+	element.style.display = 'block';
+
+	setTimeout(function () {
+		element.style.display = 'none';
+	}, 5000);
 }
 
 /*

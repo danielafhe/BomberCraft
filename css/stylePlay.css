@@ -1,3 +1,8 @@
+*, html{
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background: rgb(117, 255, 37);
 }
@@ -11,34 +16,6 @@ body {
     cursor: pointer;
 }
 
-#infoHeader {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    text-align: center;
-
-    padding-top: 0.5em;
-
-    z-index: 2;
-    font-size: 150%;
-    color: #BDBDBD;
-
-}
-
-#infoHeader .title {
-    font-size: 150%;
-    background: rgba(0, 0, 0, 0.5);
-
-    padding: 10px;
-    padding-top: 30px;
-
-    border-radius: 10px;
-
-    border-color: black;
-    border-style: solid;
-    border-width: 2px;
-}
-
 #infoPopup .legendButton {
     font-weight: bold;
     color: firebrick;
@@ -46,7 +23,7 @@ body {
 
 #infoButton, #optionButton{
     position: absolute;
-    top: 110px;
+    top: 70px;
     left: 70px;
     z-index: 2;
 
@@ -56,7 +33,7 @@ body {
 
     background: rgba(0, 0, 0, 0.5);
 
-    padding: 15px;
+    padding: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
 
@@ -72,7 +49,7 @@ body {
 
 #infoPopup {
     position: absolute;
-    top: 160px;
+    top: 140px;
     left: 10px;
     z-index: 2;
 
@@ -100,6 +77,10 @@ body {
 
 #optionButton {
     left: 10px;
+
+    padding: 13px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 #score {
@@ -134,6 +115,32 @@ body {
 
     font-size: 150%;
     width: 20%;
+
+    color: #BDBDBD;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    padding: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+
+    border-radius: 10px;
+    border-color: rgb(65, 65, 65);
+    border-style: solid;
+    border-width: 2px;
+}
+
+#textDiv {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    text-align: center;
+
+    font-size: 150%;
+    width: 45%;
+    margin-left: 25%;
 
     color: #BDBDBD;
 
