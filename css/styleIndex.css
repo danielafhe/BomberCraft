@@ -104,6 +104,10 @@
     color: #FFFFA0;
 }
 
+input{
+    padding: 10px;
+}
+
 /*
 #formulario {
     color: aliceblue;
