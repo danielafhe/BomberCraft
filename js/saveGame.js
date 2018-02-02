@@ -41,7 +41,7 @@ function actualizarUser() {
 
 function precargarDatosUser() {
     $("#userGamertag").html(gamertag);
-    $("#userLevel").html("Puntos: " + userLevel);
+    $("#userLevel").html("Nivel: " + userLevel);
     $("#userPoints").html('Puntos: ' + userPoints);
 }
 
