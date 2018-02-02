@@ -4,6 +4,7 @@ function guardarUsuario() {
 
     if (!buscarEmail(email)) {
         usersJson.push({
+            gamertag: $("#inputGamertag").val(),
             userName: $("#inputName").val(),
             lastName: $("#inputLastName").val(),
             email: $("#inputEmail").val(),

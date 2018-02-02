@@ -1,6 +1,6 @@
 let userIdRecuperado;
 
-let userName;
+let gamertag;
 let userSkin;
 let userPoints;
 let userLevel;
@@ -21,7 +21,7 @@ function cargarUsuario() {
 function cargarUser() {
     usersJson.forEach(function (value, indice, array) {
         if (indice == userIdRecuperado) {
-            userName = value.userName;
+            gamertag = value.gamertag;
             userSkin = "recursos/skins/" + value.skin + ".png";
             userPoints = value.points;
             userLevel = value.level;
@@ -40,7 +40,7 @@ function actualizarUser() {
 }
 
 function precargarDatosUser() {
-    $("#userName").html(userName);
+    $("#userGamertag").html(gamertag);
     $("#userLevel").html("Puntos: " + userLevel);
     $("#userPoints").html('Puntos: ' + userPoints);
 }
