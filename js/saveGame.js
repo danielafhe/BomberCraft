@@ -11,12 +11,13 @@ function readCookie(name) {
 
 function cargarUsuario() {
     var miCookie = readCookie("userId");
-    if (miCookie == undefined)
-        miCookie = 0;
     //let id = miCookie.slice(6, 7);
     userIdRecuperado = miCookie;
     cargarJson();
     cargarUser();
+    //If trampas o modo local
+    if (userLevel == undefined)
+        userLevel = 0;
     precargarDatosUser();
 }
 

@@ -23,6 +23,10 @@ function soltarBomba() {
     setTimeout(function () {
         let ps = [bombaPrincipal.position.x, bombaPrincipal.position.z];
         if (checkPstDroidDelete(ps, 2)) {
+            let tiempoMuerteEstimado = 30;
+            let puntosSumar = 100;
+            if (seconds < tiempoMuerteEstimado)
+                puntosSumar += (tiempoMuerteEstimado - seconds);
             sumarPuntos(100);
             cntAndroides--;
             actualizarCantidadAndroides();
@@ -43,6 +47,8 @@ function soltarBomba() {
 
 function explotarBomba() {
     bombaPrincipal.position.set(posicionBombaInicial[0], posicionBombaInicial[1], posicionBombaInicial[2]);
+    seconds = 0;
+    $("#time").html("Segundos: " + seconds);
 }
 
 function cambiarNivel(n) {
@@ -134,19 +140,24 @@ function addBombaBat() {
         inicializado = true;
     });
 }
-
-$("#time").html('0');
-
-function display() {
+var showSec;
+function showSeconds() {
     if (milisec >= 9) {
         milisec = 0
         seconds += 1
     } else
         milisec += 1
     $("#time").html("Segundos: " + seconds);
-    setTimeout("display()", 100)
+    showSec = setTimeout("showSeconds()", 100)
 }
-display()
+
+function stopShowSec(){
+    if(showSec){
+        clearTimeout(showSec);
+        $("#time").html("Segundos: " + seconds);
+    }
+}
+
 
 /*
     var runnerTexture = new THREE.ImageUtils.loadTexture('recursos/explosion/explosion.png');

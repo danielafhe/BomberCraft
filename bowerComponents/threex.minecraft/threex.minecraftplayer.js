@@ -66,6 +66,7 @@ THREEx.MinecraftPlayer = function () {
 			if (estaCerca) {
 				if (!cogido) {
 					cogido = true;
+					showSeconds();
 				}
 			}
 		}
@@ -75,6 +76,7 @@ THREEx.MinecraftPlayer = function () {
 				if (cogido) {
 					cogido = false;
 					soltarBomba();
+					stopShowSec();
 				}
 			}
 		}
