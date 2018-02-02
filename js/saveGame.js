@@ -11,6 +11,8 @@ function readCookie(name) {
 
 function cargarUsuario() {
     var miCookie = readCookie("userId");
+    if (miCookie == undefined)
+        miCookie = 0;
     //let id = miCookie.slice(6, 7);
     userIdRecuperado = miCookie;
     cargarJson();
@@ -51,6 +53,6 @@ function sumarPuntos(p) {
     $("#userPoints").html('Puntos: ' + userPoints);
 }
 
-function actualizarCantidadAndroides(){
+function actualizarCantidadAndroides() {
     $("#androids").html('Androides: ' + cntAndroides);
 }

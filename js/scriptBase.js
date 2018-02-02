@@ -137,7 +137,7 @@ require([
         })
 
         //////////////////////////////////////////////////////////////////////////////////
-        cambiarNivel(nivel);
+        cambiarNivel(userLevel);
         addBombaBat();
 
 
