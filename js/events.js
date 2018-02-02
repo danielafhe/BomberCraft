@@ -31,9 +31,8 @@ function soltarBomba() {
         } else if (checkPstDroidDelete(ps, 2)) {
             if (seconds < tiempoMuerteEstimado)
                 puntosSumar += (tiempoMuerteEstimado - seconds);
-            sumarPuntos(puntosSumar);
+            userPoints += puntosSumar;
             cntAndroides--;
-            actualizarCantidadAndroides();
             ocurrido = 2;
             if (cntAndroides <= 0) {
                 userLevel++;
@@ -42,6 +41,7 @@ function soltarBomba() {
                 ocurrido = 3;
             }
         }
+        updateScore();
         explotarBomba();
         elegirMensaje(ocurrido);
     }, 3000);
@@ -54,6 +54,7 @@ function explotarBomba() {
 }
 
 function cambiarNivel(n) {
+    n -= 1;
     let niveles = [
         [1, 100],
         [2, 140],
@@ -64,10 +65,10 @@ function cambiarNivel(n) {
         [1, 500]
     ];
 
-    if(n > niveles.length){
+    if (n > niveles.length) {
         mostrarMensaje("Enhorabuena, te has pasado el juego, vuelves al nivel 1.");
-        userLevel = 0;
-        n = 0;
+        userLevel = 1;
+        n = 1;
     }
 
     borrarArrayScena(pstAndroides);
@@ -80,8 +81,7 @@ function cambiarNivel(n) {
     player.character.root.rotation.y = Math.PI;
     player.character.root.position.x = posicionSalidaPersonaje[0];
     player.character.root.position.z = posicionSalidaPersonaje[2];
-
-    actualizarCantidadAndroides();
+    updateScore();
 
     //Se controla la posicion del los androides
     loader = new THREE.ColladaLoader();

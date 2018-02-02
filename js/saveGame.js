@@ -17,10 +17,10 @@ function cargarUsuario() {
     cargarUser();
     //If trampas o modo local
     if (userLevel == undefined)
-        userLevel = 0;
+        userLevel = 1;
     if (userPoints == undefined)
         userPoints = 0;
-    precargarDatosUser();
+    updateScore();
 }
 
 function cargarUser() {
@@ -45,17 +45,9 @@ function actualizarUser() {
     localStorage.setItem("usersJson", JSON.stringify(usersJson));
 }
 
-function precargarDatosUser() {
+function updateScore() {
     $("#userGamertag").html(gamertag);
-    $("#userLevel").html("Nivel: " + (userLevel + 1));
+    $("#userLevel").html("Nivel: " + userLevel);
     $("#userPoints").html('Puntos: ' + userPoints);
-}
-
-function sumarPuntos(p) {
-    userPoints += p;
-    $("#userPoints").html('Puntos: ' + userPoints);
-}
-
-function actualizarCantidadAndroides() {
     $("#androids").html('Androides: ' + cntAndroides);
 }
