@@ -3,13 +3,17 @@ function guardarUsuario() {
     let email = $("#inputEmail").val();
 
     if (!buscarEmail(email)) {
+        let skinElegido = $("#seleccionarSkin").val();
+        if(skinElegido == "random"){
+            skinElegido = "random/" + numRandom();
+        }
         usersJson.push({
             gamertag: $("#inputGamertag").val(),
             userName: $("#inputName").val(),
             lastName: $("#inputLastName").val(),
             email: $("#inputEmail").val(),
             pass: $("#inputPass").val(),
-            skin: $("#seleccionarSkin").val(),
+            skin: skinElegido,
             points: 0,
             level: 0
         })
@@ -34,7 +38,7 @@ function loguearse() {
         valido = true;
         //document.cookie = "userId=" + encodeURIComponent(userId) + ";expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=.daniafonso.github.io/BomberCraft";
         var expiresdate = new Date(2068, 1, 02, 11, 20);
-        document.cookie = "userId=" + encodeURIComponent(userId) + "; expires=" + expiresdate.toUTCString() +"; domain=.daniafonso.github.io";
+        document.cookie = "userId=" + encodeURIComponent(userId) + "; expires=" + expiresdate.toUTCString() + "; domain=.daniafonso.github.io";
     } else {
         $("#errorFormLog").html('No coincide con ningún usuario.');
         valido = false;

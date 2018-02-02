@@ -2,6 +2,10 @@ function positionRandom() {
 	return Math.random() * (areaJuego - (-areaJuego)) + -areaJuego;
 }
 
+function numRandom(){
+	return Math.floor(Math.random() * 15) + 1;
+}
+
 function estanCerca(a, b, d) {
 	let c = false;
 

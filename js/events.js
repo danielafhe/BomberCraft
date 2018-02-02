@@ -56,7 +56,12 @@ function explotarBomba() {
 function cambiarNivel(n) {
     let niveles = [
         [1, 100],
-        [2, 140]
+        [2, 140],
+        [3, 170],
+        [5, 200],
+        [7, 300],
+        [10, 300],
+        [1, 500]
     ];
 
     if(n > niveles.length){
