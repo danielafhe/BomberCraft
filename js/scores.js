@@ -1,10 +1,8 @@
 function mostrarPuntos() {
     cargarJson();
-    console.log(usersJson);
-    usersJson.sort(function(a, b) {
+    usersJson.sort(function (a, b) {
         return parseFloat(b.points) - parseFloat(a.points);
     });
-    console.log(usersJson);
     usersJson.forEach(function (value, indice, array) {
         let div = "<div id='userID:'" + indice + "><div><p>Gamertag: </p><p>" + value.userName +
             "</p></div><div><p>Nivel: </p><p>" + value.level +
@@ -15,5 +13,4 @@ function mostrarPuntos() {
             "</p></div></div>"
         $("#scores").append(div);
     })
-
 }
