@@ -2,7 +2,7 @@ function mostrarPuntos() {
     cargarJson();
     console.log(usersJson);
     usersJson.sort(function(a, b) {
-        return parseFloat(a.points) - parseFloat(b.points);
+        return parseFloat(b.points) - parseFloat(a.points);
     });
     console.log(usersJson);
     usersJson.forEach(function (value, indice, array) {
