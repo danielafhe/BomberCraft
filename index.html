@@ -26,7 +26,7 @@
 
         <p>Iniciar sesion:</p>
         <form id="formLog" action="./play.html" onsubmit="return loguearse()">
-            <p id="errorFormLog"></p>
+            <p id="errorFormLog" style="display:none"></p>
             <br> Correo:
             <input id="inputLogEmail" type="email" value="" required>
             <br> Contraseña:
@@ -37,7 +37,7 @@
 
         <p>Registrarte:</p>
         <form id="formReg" onsubmit="return guardarUsuario()">
-            <p id="errorFormReg"></p>
+            <p id="errorFormReg" style="display:none"></p>
             <br> Gamertag:
             <input id="inputGamertag" type="text" value="" required>
             <br> Nombre:
@@ -59,7 +59,6 @@
             <img id="skinMin" src="" alt="Avatar del jugador">
             <input class="button" type="submit" value="Enviar">
         </form>
-
 
     </div>
 

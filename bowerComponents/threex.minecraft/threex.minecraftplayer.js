@@ -65,8 +65,10 @@ THREEx.MinecraftPlayer = function () {
 			bodyAnims.start('circularPunch');
 			if (estaCerca) {
 				if (!cogido) {
-					cogido = true;
-					showSeconds();
+					if (sePuedeCoger) {
+						cogido = true;
+						showSeconds();
+					}
 				}
 			}
 		}

@@ -8,7 +8,7 @@ function guardarUsuario() {
 
     if (!buscarEmail(email)) {
         let skinElegido = $("#seleccionarSkin").val();
-        if(skinElegido == "random"){
+        if (skinElegido == "random") {
             skinElegido = "random/" + numRandom();
         }
         usersJson.push({
@@ -24,13 +24,31 @@ function guardarUsuario() {
 
         localStorage.setItem("usersJson", JSON.stringify(usersJson));
         valido = true;
-        $("#errorFormReg").html('');
+        $("#errorFormReg").html('Te has registrado correctamente.');
+        mostarAvisoReg();
     } else {
         console.log("Lo cambia");
         $("#errorFormReg").html('Ya hay un usuario registrado con ese correo.');
+        mostarAvisoReg();
         valido = false;
     }
     return valido;
+}
+
+function mostarAvisoReg() {
+    $("#errorFormReg").fadeIn(1600, "linear", complete);
+}
+
+function ocultarAvisoReg() {
+    $("#errorFormReg").fadeOut(1600, "linear", complete);
+}
+
+function mostarAvisoLog() {
+    $("#errorFormLog").fadeIn(1600, "linear", complete);
+}
+
+function ocultarAvisoLog() {
+    $("#errorFormLog").fadeOut(1600, "linear", complete);
 }
 
 /**
@@ -49,6 +67,7 @@ function loguearse() {
         document.cookie = "userId=" + encodeURIComponent(userId) + "; expires=" + expiresdate.toUTCString() + "; domain=.daniafonso.github.io";
     } else {
         $("#errorFormLog").html('No coincide con ningún usuario.');
+        mostarAvisoLog();
         valido = false;
     }
     return valido;

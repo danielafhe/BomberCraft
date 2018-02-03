@@ -7,7 +7,10 @@ var scene, player;
  * Variables globales para controlar si:
  * Está inicializado; Está cerca de la bomba; Ha cogido la bomba.
  */
-let inicializado, estaCerca, cogido = false;
+let inicializado = false;
+let estaCerca = false;
+let cogido = false;
+let batmanMuerto = false;
 
 /**
  * Duracion del ciclo del día.
@@ -148,26 +151,39 @@ require([
             if (inicializado) {
                 let collision = false;
 
-                var piernaDe = player.character.root.children[4];
-                var piernaIz = player.character.root.children[5];
-                var bombaPr = bombaPrincipal;
+                let piernaDe = player.character.root.children[4];
+                let piernaIz = player.character.root.children[5];
+                let bombaPr = bombaPrincipal;
 
-                let piernaIzBox = new THREE.Box3().setFromObject(piernaIz);
                 let piernaDeBox = new THREE.Box3().setFromObject(piernaDe);
+                let piernaIzBox = new THREE.Box3().setFromObject(piernaIz);
                 let bombaPrBox = new THREE.Box3().setFromObject(bombaPr);
 
-                //console.log(bombaPrincipal.getWorldPosition());
-                //console.log(player.character.root.getWorldPosition());
-                //console.log(posicionesAdroides[0].getWorldPosition());
+                let brazoDe = player.character.root.children[3];
+                let brazoIz = player.character.root.children[2];
+                let batPr = batman;
 
-                if (piernaIzBox.intersectsBox(bombaPrBox))
-                    collision = true;
-                else if (piernaDeBox.intersectsBox(bombaPrBox))
+                let brazoDeBox = new THREE.Box3().setFromObject(brazoDe);
+                let brazoIzBox = new THREE.Box3().setFromObject(brazoIz);
+                let batPrBox = new THREE.Box3().setFromObject(batPr);
+
+                if (piernaIzBox.intersectsBox(bombaPrBox) || piernaDeBox.intersectsBox(bombaPrBox))
                     collision = true;
                 if (collision)
                     estaCerca = true;
                 else
                     estaCerca = false;
+
+                if (atacando) {
+                    if (brazoDeBox.intersectsBox(batPrBox) || brazoIzBox.intersectsBox(batPrBox)) {
+                        scene.remove(batman);
+                        if (!batmanMuerto) {
+                            userPoints += 300;
+                            updateScore();
+                        }
+                        batmanMuerto = true;
+                    }
+                }
             }
         });
 
@@ -203,7 +219,10 @@ require([
             if (event.keyCode === 'D'.charCodeAt(0)) input.right = true
             if (event.keyCode === 'Q'.charCodeAt(0)) input.strafeLeft = true
             if (event.keyCode === 'E'.charCodeAt(0)) input.strafeRight = true
-            if (event.keyCode === 'C'.charCodeAt(0)) input.circularPunch = true
+            if (event.keyCode === 'C'.charCodeAt(0)) {
+                input.circularPunch = true;
+                atacando = true;
+            }
             if (event.keyCode === 'F'.charCodeAt(0)) input.coger = true
             if (event.keyCode === 'R'.charCodeAt(0)) input.soltar = true
             if (event.keyCode === 'P'.charCodeAt(0)) alert("Juego en pausa");
@@ -218,7 +237,10 @@ require([
             if (event.keyCode === 'D'.charCodeAt(0)) input.right = false
             if (event.keyCode === 'Q'.charCodeAt(0)) input.strafeLeft = false
             if (event.keyCode === 'E'.charCodeAt(0)) input.strafeRight = false
-            if (event.keyCode === 'C'.charCodeAt(0)) input.circularPunch = false
+            if (event.keyCode === 'C'.charCodeAt(0)) {
+                input.circularPunch = false;
+                atacando = false;
+            }
             if (event.keyCode === 'F'.charCodeAt(0)) input.coger = false
             if (event.keyCode === 'R'.charCodeAt(0)) input.soltar = false
         });

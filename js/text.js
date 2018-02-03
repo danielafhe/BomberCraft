@@ -58,6 +58,7 @@ document.querySelector('#optionButton').addEventListener('click', function (even
 		document.location.href = "./index.html";
 	});
 	$("#reiniciar").click(function () {
+		reiniciarbomba();
 		cambiarNivel(userLevel);
 	});
 });

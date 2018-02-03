@@ -50,7 +50,7 @@ function checkPstPlayerDelete(b, d) {
 function checkPstTree(b, d) {
     let c = false;
     for (var i in pstArboles) {
-        let a = [pstArboles[i].position.x, pstArboles[i].position.z];
+        let a = [pstArboles[i].position.x + 3, pstArboles[i].position.z - 3];
         if (estanCerca(a, b, d))
             c = true;
     }
