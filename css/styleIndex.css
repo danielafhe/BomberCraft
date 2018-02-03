@@ -107,3 +107,7 @@ input {
 select {
     padding: 10px;
 }
+
+#titulo > img {
+    width: 100%;
+}
