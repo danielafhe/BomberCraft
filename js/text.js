@@ -35,7 +35,9 @@ document.querySelector('#infoButton').addEventListener('click', function (event)
 	var element = document.querySelector('#infoPopup');
 	element.style.display = element.style.display === 'none' ? 'block' : 'none';
 	$('#infoPopup *').remove();
-	let contenido = "<p>Controles:</p> <br> <p>Movimiento -> WASD QE</p> <p>Coger -> F</p> <p>Soltar -> R</p>";
+	let contenido = "<p>Controles:</p> <br>" +
+		"<p>Movimiento -> WASD QE</p>" +
+		"<p>Coger -> F</p> <p>Soltar -> R</p>";
 	$("#infoPopup").append(contenido);
 });
 
@@ -46,6 +48,16 @@ document.querySelector('#optionButton').addEventListener('click', function (even
 	var element = document.querySelector('#infoPopup');
 	element.style.display = element.style.display === 'none' ? 'block' : 'none';
 	$('#infoPopup *').remove();
-	let contenido = "<p>Acciones:</p> <br> <p>Salir al menú principal</p> <p>Reiniciar el nivel</p>";
+	let contenido = "<p>Opciones:</p> <br>" +
+		"<div id='opciones'>" +
+		"<input id='salir' value='Salir' type='button' class='button'> <br>" +
+		"<input id='reiniciar' value='Reiniciar' type='button' class='button'> <br>" +
+		"</div>";
 	$("#infoPopup").append(contenido);
+	$("#salir").click(function () {
+		document.location.href = "./index.html";
+	});
+	$("#reiniciar").click(function () {
+		cambiarNivel(userLevel);
+	});
 });

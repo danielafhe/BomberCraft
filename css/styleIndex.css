@@ -64,42 +64,6 @@
     margin-bottom: 10px;
 }
 
-.button {
-    outline: 2px solid black;
-    position: relative;
-    margin: 0;
-    height: 40px;
-    display: inline-block;
-    background-image: url('../recursos/botones/button_center.png');
-    background-repeat: repeat;
-    padding: 0;
-    font-family: Minecraft;
-    text-align: center;
-    color: white;
-    text-shadow: 3px 3px #4C4C4C;
-    border-bottom: 4px solid #565656;
-    border-right: 2px solid #565656;
-    border-left: 2px solid #AAA;
-    border-top: 2px solid #AAA;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-.button span {
-    position: relative;
-    line-height: 40px;
-    bottom: 3px;
-}
-
-.button:hover {
-    border-bottom: 4px solid #59639A;
-    border-right: 2px solid #59639A;
-    border-left: 2px solid #BDC6FF;
-    border-top: 2px solid #BDC6FF;
-    background-image: url('../recursos/botones/button_active_center.png');
-    color: #FFFFA0;
-}
-
 input {
     padding: 10px;
 }
@@ -108,6 +72,6 @@ select {
     padding: 10px;
 }
 
-#titulo > img {
+#titulo>img {
     width: 100%;
 }

@@ -1,49 +1,32 @@
-*, html{
+*,
+html {
     margin: 0;
     padding: 0;
 }
 
-body {
-    background: rgb(117, 255, 37);
-}
-
-.buttonPrevNext {
-    background: red;
-}
-
-.buttonPrevNext:hover {
-    background: blue;
-    cursor: pointer;
-}
-
-#infoPopup .legendButton {
-    font-weight: bold;
-    color: firebrick;
-}
-
-#infoButton, #optionButton{
+#infoButton,
+#optionButton {
     position: absolute;
     top: 70px;
     left: 70px;
     z-index: 2;
-
     font-style: italic;
     font-size: 180%;
     color: white;
-
     background: rgba(0, 0, 0, 0.5);
-
     padding: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
-
     border-radius: 1000px;
     border-color: #BDBDBD;
     border-style: solid;
     border-width: 2px;
 }
 
-#infoButton:hover, #optionButton:hover {
+#infoButton:hover,
+#optionButton:hover,
+#salir:hover,
+#reiniciar:hover {
     cursor: pointer;
 }
 
@@ -52,19 +35,13 @@ body {
     top: 140px;
     left: 10px;
     z-index: 2;
-
     font-size: 150%;
     width: 30%;
-
     color: #BDBDBD;
-
     background: rgba(0, 0, 0, 0.5);
-
     padding: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
-
-
     border-radius: 10px;
     border-color: black;
     border-style: solid;
@@ -77,7 +54,6 @@ body {
 
 #optionButton {
     left: 10px;
-
     padding: 13px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -88,19 +64,13 @@ body {
     top: 10px;
     right: 10px;
     z-index: 2;
-
     font-size: 150%;
     width: 20%;
-
     color: #BDBDBD;
-
     background: rgba(0, 0, 0, 0.5);
-
     padding: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
-
-
     border-radius: 10px;
     border-color: rgb(65, 65, 65);
     border-style: solid;
@@ -112,19 +82,13 @@ body {
     top: 10px;
     left: 10px;
     z-index: 2;
-
     font-size: 150%;
     width: 20%;
-
     color: #BDBDBD;
-
     background: rgba(0, 0, 0, 0.5);
-
     padding: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
-
-
     border-radius: 10px;
     border-color: rgb(65, 65, 65);
     border-style: solid;
@@ -137,22 +101,22 @@ body {
     left: 10px;
     z-index: 2;
     text-align: center;
-
     font-size: 150%;
     width: 45%;
     margin-left: 25%;
-
     color: #BDBDBD;
-
     background: rgba(0, 0, 0, 0.5);
-
     padding: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
-
-
     border-radius: 10px;
     border-color: rgb(65, 65, 65);
     border-style: solid;
     border-width: 2px;
+}
+
+#opciones {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
 }
