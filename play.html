@@ -5,11 +5,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src='js/utilities.js'></script>
-	<script src='js/three.min.js'></script>
-	<script src='js/require.js'></script>
-	<script src='js/colladaLoader.js'></script>
+	<script src="js/lib/jquery-3.3.1.min.js"></script>
+	<script src='js/lib/three.min.js'></script>
+	<script src='js/lib/require.js'></script>
+	<script src='js/lib/colladaLoader.js'></script>
 	<link rel="stylesheet" href="css/styleCompartido.css">
 	<link rel="stylesheet" href="css/stylePlay.css">
 	<title>Play BomberCraft</title>
@@ -20,14 +20,10 @@
 	<div id='infoButton'>
 		i
 	</div>
-	<div id='optionButton' onclick="window.location.href='/scores.html'">
+	<div id='optionButton'>
 		o
 	</div>
 	<div id='infoPopup' style='display: none;'>
-		Controles:
-		<br/> Movimiento -> WASD QE
-		<br/> Coger -> F
-		<br/> Soltar -> R
 	</div>
 
 	<div id='timeDiv'>
@@ -45,13 +41,12 @@
 		<p id="androids">Androides: 0</p>
 	</div>
 
-	<script src="./bowerComponents/threex.firework/fireworks-bundle.js"></script>
 	<script src="js/checkGame.js"></script>
 	<script src="js/events.js"></script>
 	<script src="js/saveGame.js"></script>
 	<script src="js/comun.js"></script>
-	<script src='js/scriptBase.js'></script>
-	<script src='js/textos.js'></script>
+	<script src='js/play.js'></script>
+	<script src='js/text.js'></script>
 </body>
 
 </html>

@@ -97,7 +97,7 @@ function cambiarNivel(n) {
             //clone.scale.set(0.2, 0.2, 0.2);
             clone.position.set(positionRandom(), 0.13, positionRandom());
             let pos = [clone.position.x, clone.position.z];
-            if (!checkPstPlayer(pos, 20) && !checkDistJusta(pos, 15)) {
+            if (!checkPstPlayer(pos, 20) && !checkPstDroid(pos, 15)) {
                 scene.add(clone);
                 pstAndroides.push(clone);
             } else {

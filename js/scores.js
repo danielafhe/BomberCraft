@@ -1,3 +1,7 @@
+/**
+ * @description Muestra las puntuaciones de todos los usuarios registrados anteriormente en el dispositivo
+ * ordenadas de mayor a menor puntuación.
+ */
 function mostrarPuntos() {
     cargarJson();
     usersJson.sort(function (a, b) {

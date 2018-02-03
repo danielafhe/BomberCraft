@@ -1,6 +1,7 @@
 /**
  * @author mrdoob / http://mrdoob.com/
  * @author Mugen87 / https://github.com/Mugen87
+ * @description Permite crear objetos tipo collada en el juego.
  */
 
 THREE.ColladaLoader = function (manager) {
@@ -301,8 +302,8 @@ THREE.ColladaLoader.prototype = {
 
 			// check selection syntax
 
-			var arraySyntax = (sid.indexOf('(') !== - 1);
-			var memberSyntax = (sid.indexOf('.') !== - 1);
+			var arraySyntax = (sid.indexOf('(') !== -1);
+			var memberSyntax = (sid.indexOf('.') !== -1);
 
 			if (memberSyntax) {
 
@@ -461,7 +462,10 @@ THREE.ColladaLoader.prototype = {
 
 			for (var time in data) {
 
-				keyframes.push({ time: parseFloat(time), value: data[time] });
+				keyframes.push({
+					time: parseFloat(time),
+					value: data[time]
+				});
 
 			}
 
@@ -691,7 +695,7 @@ THREE.ColladaLoader.prototype = {
 			var tracks = [];
 
 			var name = data.name;
-			var duration = (data.end - data.start) || - 1;
+			var duration = (data.end - data.start) || -1;
 			var animations = data.animations;
 
 			for (var i = 0, il = animations.length; i < il; i++) {
@@ -834,7 +838,10 @@ THREE.ColladaLoader.prototype = {
 						var semantic = child.getAttribute('semantic');
 						var id = parseId(child.getAttribute('source'));
 						var offset = parseInt(child.getAttribute('offset'));
-						data.inputs[semantic] = { id: id, offset: offset };
+						data.inputs[semantic] = {
+							id: id,
+							offset: offset
+						};
 						break;
 
 					case 'vcount':
@@ -921,7 +928,10 @@ THREE.ColladaLoader.prototype = {
 					var weightId = v[stride + weightOffset];
 					var skinWeight = weights[weightId];
 
-					vertexSkinData.push({ index: skinIndex, weight: skinWeight });
+					vertexSkinData.push({
+						index: skinIndex,
+						weight: skinWeight
+					});
 
 					stride += 2;
 
@@ -966,7 +976,10 @@ THREE.ColladaLoader.prototype = {
 				var name = jointSource.array[i];
 				var boneInverse = new THREE.Matrix4().fromArray(inverseSource.array, i * inverseSource.stride).transpose();
 
-				build.joints.push({ name: name, boneInverse: boneInverse });
+				build.joints.push({
+					name: name,
+					boneInverse: boneInverse
+				});
 
 			}
 
@@ -1223,7 +1236,10 @@ THREE.ColladaLoader.prototype = {
 						break;
 
 					case 'texture':
-						data[child.nodeName] = { id: child.getAttribute('texture'), extra: parseEffectParameterTexture(child) };
+						data[child.nodeName] = {
+							id: child.getAttribute('texture'),
+							extra: parseEffectParameterTexture(child)
+						};
 						break;
 
 				}
@@ -1603,8 +1619,7 @@ THREE.ColladaLoader.prototype = {
 					xmag *= 0.5;
 					ymag *= 0.5;
 
-					camera = new THREE.OrthographicCamera(
-						- xmag, xmag, ymag, - ymag, // left, right, top, bottom
+					camera = new THREE.OrthographicCamera(-xmag, xmag, ymag, -ymag, // left, right, top, bottom
 						data.optics.parameters.znear,
 						data.optics.parameters.zfar
 					);
@@ -1911,7 +1926,10 @@ THREE.ColladaLoader.prototype = {
 						var id = parseId(child.getAttribute('source'));
 						var semantic = child.getAttribute('semantic');
 						var offset = parseInt(child.getAttribute('offset'));
-						primitive.inputs[semantic] = { id: id, offset: offset };
+						primitive.inputs[semantic] = {
+							id: id,
+							offset: offset
+						};
 						primitive.stride = Math.max(primitive.stride, offset + 1);
 						break;
 
@@ -1980,19 +1998,38 @@ THREE.ColladaLoader.prototype = {
 
 			var build = {};
 
-			var position = { array: [], stride: 0 };
-			var normal = { array: [], stride: 0 };
-			var uv = { array: [], stride: 0 };
-			var color = { array: [], stride: 0 };
+			var position = {
+				array: [],
+				stride: 0
+			};
+			var normal = {
+				array: [],
+				stride: 0
+			};
+			var uv = {
+				array: [],
+				stride: 0
+			};
+			var color = {
+				array: [],
+				stride: 0
+			};
 
-			var skinIndex = { array: [], stride: 4 };
-			var skinWeight = { array: [], stride: 4 };
+			var skinIndex = {
+				array: [],
+				stride: 4
+			};
+			var skinWeight = {
+				array: [],
+				stride: 4
+			};
 
 			var geometry = new THREE.BufferGeometry();
 
 			var materialKeys = [];
 
-			var start = 0, count = 0;
+			var start = 0,
+				count = 0;
 
 			for (var p = 0; p < primitives.length; p++) {
 
@@ -2157,8 +2194,12 @@ THREE.ColladaLoader.prototype = {
 						var c = index + stride * 2;
 						var d = index + stride * 3;
 
-						pushVector(a); pushVector(b); pushVector(d);
-						pushVector(b); pushVector(c); pushVector(d);
+						pushVector(a);
+						pushVector(b);
+						pushVector(d);
+						pushVector(b);
+						pushVector(c);
+						pushVector(d);
 
 					} else if (count === 3) {
 
@@ -2166,7 +2207,9 @@ THREE.ColladaLoader.prototype = {
 						var b = index + stride * 1;
 						var c = index + stride * 2;
 
-						pushVector(a); pushVector(b); pushVector(c);
+						pushVector(a);
+						pushVector(b);
+						pushVector(c);
 
 					} else {
 
@@ -2634,7 +2677,7 @@ THREE.ColladaLoader.prototype = {
 
 								// if there is a connection of the transform node with a joint, apply the joint value
 
-								if (transform.sid && transform.sid.indexOf(jointIndex) !== - 1) {
+								if (transform.sid && transform.sid.indexOf(jointIndex) !== -1) {
 
 									switch (joint.type) {
 
@@ -3024,7 +3067,11 @@ THREE.ColladaLoader.prototype = {
 
 					}
 
-					boneData.push({ bone: object, boneInverse: boneInverse, processed: false });
+					boneData.push({
+						bone: object,
+						boneInverse: boneInverse,
+						processed: false
+					});
 
 				}
 
@@ -3359,7 +3406,7 @@ THREE.ColladaLoader.prototype = {
 
 					}
 
-					animations.push(new THREE.AnimationClip('default', - 1, tracks));
+					animations.push(new THREE.AnimationClip('default', -1, tracks));
 
 				}
 
@@ -3379,7 +3426,9 @@ THREE.ColladaLoader.prototype = {
 
 		if (text.length === 0) {
 
-			return { scene: new THREE.Scene() };
+			return {
+				scene: new THREE.Scene()
+			};
 
 		}
 
@@ -3464,7 +3513,7 @@ THREE.ColladaLoader.prototype = {
 
 		if (asset.upAxis === 'Z_UP') {
 
-			scene.rotation.x = - Math.PI / 2;
+			scene.rotation.x = -Math.PI / 2;
 
 		}
 

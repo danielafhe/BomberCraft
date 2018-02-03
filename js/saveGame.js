@@ -1,14 +1,19 @@
-let userIdRecuperado;
+/**
+ * Variables globales con los atributos del usuario actual.
+ */
+let userIdRecuperado, gamertag, userSkin, userPoints, userLevel;
 
-let gamertag;
-let userSkin;
-let userPoints;
-let userLevel;
-
+/**
+ * @description Recupera una cookie que se le envíe como parámetro.
+ * @param {*} name nombre de la cookie a recuperar.
+ */
 function readCookie(name) {
     return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + name.replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
 }
 
+/**
+ * @description Carga el usuario que se haya logueado por ultima vez en el juego.
+ */
 function cargarUsuario() {
     var miCookie = readCookie("userId");
     //let id = miCookie.slice(6, 7);
@@ -23,6 +28,9 @@ function cargarUsuario() {
     updateScore();
 }
 
+/**
+ * @description Carga los datos del usuario actual en las variables globales.
+ */
 function cargarUser() {
     usersJson.forEach(function (value, indice, array) {
         if (indice == userIdRecuperado) {
@@ -34,6 +42,9 @@ function cargarUser() {
     })
 }
 
+/**
+ * @description Actualiza el usuario con sus ultimas azañas en el juego.
+ */
 function actualizarUser() {
     usersJson.forEach(function (value, indice, array) {
         if (indice == userIdRecuperado) {
@@ -45,6 +56,9 @@ function actualizarUser() {
     localStorage.setItem("usersJson", JSON.stringify(usersJson));
 }
 
+/**
+ * @description Actualiza el div de puntuacion con los datos actualizados del usuario.
+ */
 function updateScore() {
     $("#userGamertag").html(gamertag);
     $("#userLevel").html("Nivel: " + userLevel);

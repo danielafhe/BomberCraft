@@ -1,13 +1,22 @@
-var scene;
-var player;
+/**
+ * Variables globales para el jugador y la escena.
+ */
+var scene, player;
 
-let inicializado = false;
+/**
+ * Variables globales para controlar si:
+ * Está inicializado; Está cerca de la bomba; Ha cogido la bomba.
+ */
+let inicializado, estaCerca, cogido = false;
 
-let estaCerca = false;
-let cogido = false;
+/**
+ * Duracion del ciclo del día.
+ */
+var dayDuration = 240;
 
-cargarUsuario();
-
+/**
+ * Extensiones que requiere, si no las encuentra, no continúa con el código.
+ */
 require([
         'bowerComponents/threex.minecraft/package.require.js',
         'bowerComponents/threex.daynight/package.require.js',
@@ -15,30 +24,28 @@ require([
     ],
     function () {
         let activo = false;
-
+        //Renderizado de WebGL
         var renderer = new THREE.WebGLRenderer({
             antialias: true
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
+        //Array en el que se añade todo lo que queremos renderizar
         var onRenderFcts = []
+        //Se inicializa la cámara
         scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.01, 30000);
+        //Camara, se controla la distancia de esta y la distancia de dibujado
+        var camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.01, 3000);
         camera.position.z = 2;
 
-        //////////////////////////////////////////////////////////////////////////////////
-        //Redimensionar ventana
-
+        //Al redimensionar la ventana, se ajusta a las nuevas proporciones
         THREEx.WindowResize(renderer, camera)
         window.addEventListener('resize', function (event) {
             mixerContext.rendererCSS.setSize(window.innerWidth, window.innerHeight)
-        }, false)
+        }, false);
 
-        //////////////////////////////////////////////////////////////////////////////////
-        //Asignar los 3 puntos de luz
-
-        ;
+        //Asignar los 3 puntos de luz        
         (function () {
             //Luz ambiente
             var light = new THREE.AmbientLight(0x020202)
@@ -53,101 +60,91 @@ require([
             scene.add(light)
         })()
 
-        //////////////////////////////////////////////////////////////////////////////////
         //Ciclo del dia
         //Angulo de salida del sol
-        //var sunAngle = Math.PI + Math.PI / 2;
+        var sunAngle = Math.PI + Math.PI / 2;
         var sunAngle = 2.4;
         onRenderFcts.push(function (delta, now) {
-            var dayDuration = 24
             //Paso del tiempo
-            //sunAngle -= delta / dayDuration * Math.PI * 2
-        })
+            sunAngle -= delta / dayDuration * Math.PI * 2
+        });
 
-        //////////////////////////////////////////////////////////////////////////////////
         //Estrellas nocturnas
         var starField = new THREEx.DayNight.StarField()
         scene.add(starField.object3d)
         onRenderFcts.push(function (delta, now) {
             starField.update(sunAngle)
-        })
+        });
 
-        //////////////////////////////////////////////////////////////////////////////////
         //Sol
         var sunSphere = new THREEx.DayNight.SunSphere()
         scene.add(sunSphere.object3d)
         onRenderFcts.push(function (delta, now) {
             sunSphere.update(sunAngle)
-        })
+        });
 
-        //////////////////////////////////////////////////////////////////////////////////
         //Luz direccional del sol
         var sunLight = new THREEx.DayNight.SunLight()
         scene.add(sunLight.object3d)
         onRenderFcts.push(function (delta, now) {
             sunLight.update(sunAngle)
-        })
+        });
 
-        //////////////////////////////////////////////////////////////////////////////////
         //Cielo estrella
         var skydom = new THREEx.DayNight.Skydom()
         scene.add(skydom.object3d)
         onRenderFcts.push(function (delta, now) {
             skydom.update(sunAngle)
-        })
+        });
 
-        //////////////////////////////////////////////////////////////////////////////////
         //Texturas del suelo
         var textureUrl = 'recursos/suelo/grasslight-small.jpg';
         var texture = THREE.ImageUtils.loadTexture(textureUrl);
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.x = 100
-        texture.repeat.y = 100
+        texture.repeat.x = 100;
+        texture.repeat.y = 100;
         texture.anisotropy = 16;
 
-        var geometry = new THREE.CircleGeometry(300, 320)
+        //Tamaño del suelo
+        var geometry = new THREE.CircleGeometry(300, 320);
         var material = new THREE.MeshPhongMaterial({
-            map: texture,
-        })
+            map: texture
+        });
 
-        var mesh = new THREE.Mesh(geometry, material)
-        mesh.lookAt(new THREE.Vector3(0, 1, 0))
-        scene.add(mesh)
+        //Se aplican las texturas del suelo y su geometria
+        var mesh = new THREE.Mesh(geometry, material);
+        mesh.lookAt(new THREE.Vector3(0, 1, 0));
+        scene.add(mesh);
 
-        //////////////////////////////////////////////////////////////////////////////////
-        //Se controla la posicion del personaje
-        THREEx.MinecraftChar.defaultMaterial = THREE.MeshPhongMaterial
-
-        player = new THREEx.MinecraftPlayer()
-        player.character.root.rotation.y = Math.PI
+        //Se crea el personaje y se le asigna una posicion y se agrega a la escena
+        THREEx.MinecraftChar.defaultMaterial = THREE.MeshPhongMaterial;
+        player = new THREEx.MinecraftPlayer();
+        player.character.root.rotation.y = Math.PI;
         player.character.root.position.x = posicionSalidaPersonaje[0];
         player.character.root.position.z = posicionSalidaPersonaje[2];
-        scene.add(player.character.root)
+        scene.add(player.character.root);
+
+        //Cada vez que se accione el personaje se actualiza con la nueva posicion
         onRenderFcts.push(function (delta, now) {
             player.update(delta, now);
             posicionPersonaje = [player.character.root.position.x, player.character.root.position.y, player.character.root.position.z];
+            //Si la bomba está cogida, se mueve junto con el personaje
             if (cogido) {
                 bombaPrincipal.position.set(posicionPersonaje[0], posicionPersonaje[1], posicionPersonaje[2]);
                 bombaPrincipal.position.y = 0.5;
                 bombaPrincipal.rotation.x = player.character.root.rotation.x;
                 bombaPrincipal.rotation.y = player.character.root.rotation.y + 3.1;
             }
+        });
 
-        })
-
-        //////////////////////////////////////////////////////////////////////////////////
-        
+        //Carga los datos del usuario, cargar el nivel y agregar los objetos
+        cargarUsuario();
         cambiarNivel(userLevel);
         addBombaBat();
 
-
-
-        //////////////////////////////////////////////////////////////////////////////////
         //Bucle para las colisiones
-
         onRenderFcts.push(function () {
-
             if (inicializado) {
                 let collision = false;
 
@@ -167,37 +164,29 @@ require([
                     collision = true;
                 else if (piernaDeBox.intersectsBox(bombaPrBox))
                     collision = true;
-
-                if (collision) {
-                    //console.log("Colision True!!!!!!!!!!!!!!!!");
+                if (collision)
                     estaCerca = true;
-                    //posicionesAdroides[0].visible =false;
-                } else {
-                    //console.log("Colision False!!!!!!!!!!!!!!!!");
+                else
                     estaCerca = false;
-                    //posicionesAdroides[0].visible = true;
-                }
             }
-        })
+        });
 
-        //////////////////////////////////////////////////////////////////////////////////
         //Controles de la camara
         var cameraControlsDisabled = false
         //Mantener la camara detras del jugador
-        // - complex but html.mixer needs the camera to be at the world level
         onRenderFcts.push(function (delta) {
             if (cameraControlsDisabled) return
 
             var object3d = player.character.root
 
-            // set camera position
+            //Asignar la posicion de la cámara
             var vector = new THREE.Vector3(0, 1.2, -2);
             var matrix = new THREE.Matrix4().makeRotationY(object3d.rotation.y);
             vector.applyMatrix4(matrix);
             var position = object3d.position.clone().add(vector);
             camera.position.copy(position)
 
-            // set camera lookAt
+            //Asignar a donde mira la cámara
             var vector = new THREE.Vector3(0, 1.2, 3);
             var matrix = new THREE.Matrix4().makeRotationY(object3d.rotation.y);
             vector.applyMatrix4(matrix);
@@ -205,8 +194,7 @@ require([
             camera.lookAt(target)
         })
 
-        //////////////////////////////////////////////////////////////////////////////////
-        //Controles por teclado
+        //Controles al apretar las teclas
         document.body.addEventListener('keydown', function (event) {
             var input = player.controls.input
             if (event.keyCode === 'W'.charCodeAt(0)) input.up = true
@@ -219,7 +207,9 @@ require([
             if (event.keyCode === 'F'.charCodeAt(0)) input.coger = true
             if (event.keyCode === 'R'.charCodeAt(0)) input.soltar = true
             if (event.keyCode === 'P'.charCodeAt(0)) alert("Juego en pausa");
-        })
+        });
+
+        //Controles al soltar las teclas
         document.body.addEventListener('keyup', function (event) {
             var input = player.controls.input
             if (event.keyCode === 'W'.charCodeAt(0)) input.up = false
@@ -231,28 +221,25 @@ require([
             if (event.keyCode === 'C'.charCodeAt(0)) input.circularPunch = false
             if (event.keyCode === 'F'.charCodeAt(0)) input.coger = false
             if (event.keyCode === 'R'.charCodeAt(0)) input.soltar = false
-        })
+        });
 
-        //////////////////////////////////////////////////////////////////////////////////
         //Renderizar la escena completa con todo lo añadido
         onRenderFcts.push(function () {
             renderer.render(scene, camera);
-        })
+        });
 
-        //////////////////////////////////////////////////////////////////////////////////
-        //Bucle de movimiento
-        var lastTimeMsec = null
+        //Bucle para renderizar toda la escena
+        var lastTimeMsec = null;
         requestAnimationFrame(function animate(nowMsec) {
-            // keep looping
+            //Mantener el bucle
             requestAnimationFrame(animate);
-            // measure time
-            lastTimeMsec = lastTimeMsec || nowMsec - 1000 / 60
-            var deltaMsec = Math.min(200, nowMsec - lastTimeMsec)
-            lastTimeMsec = nowMsec
-            // call each update function
+            //Renderizar cada cierto tiempo
+            lastTimeMsec = lastTimeMsec || nowMsec - 1000 / 60;
+            var deltaMsec = Math.min(200, nowMsec - lastTimeMsec);
+            lastTimeMsec = nowMsec;
+            //Ejecutar en cada iteraccion del bucle
             onRenderFcts.forEach(function (onRenderFct) {
-                onRenderFct(deltaMsec / 1000, nowMsec / 1000)
-            })
-        })
-
+                onRenderFct(deltaMsec / 1000, nowMsec / 1000);
+            });
+        });
     })

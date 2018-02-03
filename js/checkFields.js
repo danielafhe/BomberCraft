@@ -1,3 +1,7 @@
+/**
+ * @description Comprueba que el correo no existe previamente y si es correcto, guarda el usuario
+ * en localstorage.
+ */
 function guardarUsuario() {
     let valido = false;
     let email = $("#inputEmail").val();
@@ -29,6 +33,10 @@ function guardarUsuario() {
     return valido;
 }
 
+/**
+ * @description Comprueba que el usuario y contraseña escrito por el usuario corresponde
+ * a un usuario registrado previamente y crea una cookie con estos datos.
+ */
 function loguearse() {
     let valido = false;
     let email = $("#inputLogEmail").val();
@@ -46,6 +54,9 @@ function loguearse() {
     return valido;
 }
 
+/**
+ * @description Muestra una miniatura en la web del skin que el usuario a elegido.
+ */
 function elegirSkin() {
     let seleccion = $("#seleccionarSkin").val();
     $("#skinMin").attr("src", "recursos/skins/" + seleccion + "_min.png");
