@@ -102,7 +102,7 @@ function cambiarNivel(n) {
     if (n > (niveles.length)-1) {
         mostrarMensaje("Enhorabuena, te has pasado el juego, vuelves al nivel 1.");
         userLevel = 1;
-        n = 1;
+        n = 0;
     }
 
     borrarArrayScena(pstAndroides);
