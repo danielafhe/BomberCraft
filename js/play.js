@@ -121,6 +121,9 @@ require([
         mesh.lookAt(new THREE.Vector3(0, 1, 0));
         scene.add(mesh);
 
+        //Carga los datos del usuario
+        cargarUsuario();
+
         //Se crea el personaje y se le asigna una posicion y se agrega a la escena
         THREEx.MinecraftChar.defaultMaterial = THREE.MeshPhongMaterial;
         player = new THREEx.MinecraftPlayer();
@@ -142,8 +145,7 @@ require([
             }
         });
 
-        //Carga los datos del usuario, cargar el nivel y agregar los objetos
-        cargarUsuario();
+        //Cargar el nivel y agregar los objetos
         cambiarNivel(userLevel);
         addBombaBat();
 
@@ -231,11 +233,11 @@ require([
             var input = player.controls.input
             if (event.keyCode === 'W'.charCodeAt(0)) {
                 input.up = true;
-                sndWalking.play();
+                //sndWalking.play();
             }
             if (event.keyCode === 'S'.charCodeAt(0)) {
                 input.down = true;
-                sndWalking.play();
+                //sndWalking.play();
             }
             if (event.keyCode === 'A'.charCodeAt(0)) {
                 input.left = true;
@@ -245,11 +247,11 @@ require([
             }
             if (event.keyCode === 'Q'.charCodeAt(0)) {
                 input.strafeLeft = true;
-                sndWalking.play();
+                //sndWalking.play();
             }
             if (event.keyCode === 'E'.charCodeAt(0)) {
                 input.strafeRight = true;
-                sndWalking.play();
+                //sndWalking.play();
             }
 
             if (event.keyCode === 'C'.charCodeAt(0)) {
@@ -266,11 +268,11 @@ require([
             var input = player.controls.input
             if (event.keyCode === 'W'.charCodeAt(0)) {
                 input.up = false;
-                sndWalking.pause();
+                //sndWalking.pause();
             }
             if (event.keyCode === 'S'.charCodeAt(0)) {
                 input.down = false;
-                sndWalking.pause();
+                //sndWalking.pause();
             }
             if (event.keyCode === 'A'.charCodeAt(0)) {
                 input.left = false;
@@ -280,11 +282,11 @@ require([
             }
             if (event.keyCode === 'Q'.charCodeAt(0)) {
                 input.strafeLeft = false;
-                sndWalking.pause();
+                //sndWalking.pause();
             }
             if (event.keyCode === 'E'.charCodeAt(0)) {
                 input.strafeRight = false;
-                sndWalking.pause();
+                //sndWalking.pause();
             }
             if (event.keyCode === 'C'.charCodeAt(0)) {
                 input.circularPunch = false;
