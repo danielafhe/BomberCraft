@@ -1,7 +1,11 @@
 /**
  * Variables globales con los atributos del usuario actual.
  */
-let userIdRecuperado, gamertag, userSkin, userPoints, userLevel;
+let userIdRecuperado;
+let gamertag;
+let userSkin;
+let userPoints;
+let userLevel;
 
 /**
  * @description Recupera una cookie que se le envíe como parámetro.
@@ -25,6 +29,8 @@ function cargarUsuario() {
         userLevel = 1;
     if (userPoints == undefined)
         userPoints = 0;
+    if (userSkin == undefined)
+        userSkin = "recursos/skins/papa_noel.png";
     updateScore();
 }
 

@@ -6,7 +6,9 @@ let batman;
 let posicionBombaInicial = [0, 0, 0];
 let posicionSalidaPersonaje = [-1, 0, 3];
 
-let posicionPersonaje, cntAndroides, cntArboles;
+let posicionPersonaje;
+let cntAndroides;
+let cntArboles;
 
 let pstAndroides = [];
 let pstArboles = [];
