@@ -15,6 +15,9 @@ let areaJuego = 65;
 let sePuedeCoger = true;
 let atacando = false;
 
+let sndExplosion;
+let sndAmbiente;
+
 /**
  * @description Suelta la bomba en el suelo e inicia el proceso de explotar.
  */
@@ -27,10 +30,12 @@ function soltarBomba() {
     let ocurrido = 0;
     let puntosSumar = 25;
     let tiempoMuerteEstimado = 30;
+    sndExplosion = new Audio("recursos/sounds/explosion_1.wav");
 
     setTimeout(function () {
         let ps = [bombaPrincipal.position.x, bombaPrincipal.position.z];
         if (checkPstPlayerDelete(ps, 2)) {
+            sndExplosion = new Audio("recursos/sounds/explosion_0.wav");
             cambiarNivel(userLevel);
             ocurrido = 1;
         } else if (checkPstDroidDelete(ps, 2)) {
@@ -39,6 +44,7 @@ function soltarBomba() {
             userPoints += puntosSumar;
             cntAndroides--;
             ocurrido = 2;
+            sndExplosion = new Audio("recursos/sounds/explosion_0.wav");
             if (cntAndroides <= 0) {
                 userLevel++;
                 actualizarUser();
@@ -73,6 +79,7 @@ function explotarBomba() {
     seconds = 0;
     sePuedeCoger = true;
     $("#time").html("Segundos: " + seconds);
+    sndExplosion.play();
 }
 
 /**

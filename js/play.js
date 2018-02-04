@@ -187,6 +187,13 @@ require([
             }
         });
 
+        let sndAmbient = new Audio('recursos/sounds/forest.mp3');
+        sndAmbient.addEventListener('ended', function () {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+        sndAmbient.play();
+
         //Controles de la camara
         var cameraControlsDisabled = false
         //Mantener la camara detras del jugador

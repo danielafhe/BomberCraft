@@ -10,7 +10,8 @@ function mostrarPuntos() {
     });
     usersJson.forEach(function (value, indice, array) {
         delay += 2000;
-        let div = "<div class='user' style='display:none' id='userID:'" + indice + "><div><p>Gamertag: </p><p>" + value.userName +
+        let div = "<div class='user' style='display:none' id='userID:'" + indice + "><div>" +
+            "<p>Gamertag: </p><p>" + value.gamertag +
             "</p></div><div><p>Nivel: </p><p>" + value.level +
             "</p></div><div><p>Puntos: </p><p>" + value.points +
             "</p></div><div><p>Nombre: </p><p>" + value.userName +
@@ -20,5 +21,4 @@ function mostrarPuntos() {
         $("#scores").append(div);
         $(".user:hidden:first").fadeIn(delay);
     });
-    
 }

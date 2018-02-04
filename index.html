@@ -39,15 +39,19 @@
         <form id="formReg" onsubmit="return guardarUsuario()">
             <p id="errorFormReg"></p>
             <br> Gamertag:
-            <input id="inputGamertag" type="text" value="" required>
+            <input id="inputGamertag" type="text" value="" required
+            pattern="[A-Za-z]{6,16}" title="Mayúsculas, Minúsculas, entre 6 y 16 caracteres">
             <br> Nombre:
-            <input id="inputName" type="text"  value="" required>
+            <input id="inputName" type="text"  value="" required
+            pattern="[A-Za-z]{4,16}" title="Mayúsculas, Minúsculas, entre 4 y 16 caracteres">
             <br> Apellidos:
-            <input id="inputLastName" type="text" value="" required>
+            <input id="inputLastName" type="text" value="" required
+            pattern="[a-zA-Z][a-zA-Z ]{4,}" title="Mayúsculas, Minúsculas">
             <br> Correo:
             <input id="inputEmail" type="email" value="" required>
             <br> Contraseña:
-            <input id="inputPass" type="password" value="" required>
+            <input id="inputPass" type="password" value="" required
+            pattern="[A-Za-z0-9]{6,16}" title="Mayusculas, Minusculas, Numeros, entre 6 y 16 caracteres">
             <br> Skin:
             <select id="seleccionarSkin" onChange="elegirSkin()">
                 <option value="papa_noel">Papa Noel</option>
