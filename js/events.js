@@ -1,3 +1,13 @@
+//Area del juego
+let areaJuego = 65;
+//Niveles de dificultad
+let niveles = [
+    [7, 250],
+    [3, 140],
+    [4, 170],
+    [5, 200],
+    [2, 50]
+];
 //Contadores para los segundos
 var milisec = 0;
 var seconds = 0;
@@ -13,8 +23,6 @@ let pstArboles = [];
 //Cantidad de elementos
 let cntAndroides;
 let cntArboles;
-//Area del juego
-let areaJuego = 65;
 //Indicadores de estado
 let sePuedeCoger = true;
 let atacando = false;
@@ -50,9 +58,16 @@ function soltarBomba() {
             sndExplosion = new Audio("recursos/sounds/explosion_0.wav");
             if (cntAndroides <= 0) {
                 userLevel++;
-                actualizarUser();
-                cambiarNivel(userLevel);
-                ocurrido = 3;
+                if (userLevel > niveles.length) {
+                    userLevel = 1;
+                    actualizarUser();
+                    cambiarNivel(userLevel);
+                    ocurrido = 6;
+                } else {
+                    actualizarUser();
+                    cambiarNivel(userLevel);
+                    ocurrido = 3;
+                }
             }
         }
         updateScore();
@@ -91,19 +106,6 @@ function explotarBomba() {
  */
 function cambiarNivel(n) {
     n -= 1;
-    let niveles = [
-        [7, 250],
-        [3, 140],
-        [4, 170],
-        [5, 200],
-        [2, 50]
-    ];
-
-    if (n > (niveles.length)-1) {
-        mostrarMensaje("Enhorabuena, te has pasado el juego, vuelves al nivel 1.");
-        userLevel = 1;
-        n = 0;
-    }
 
     borrarArrayScena(pstAndroides);
     borrarArrayScena(pstArboles);

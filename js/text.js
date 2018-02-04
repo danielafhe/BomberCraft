@@ -9,7 +9,8 @@ function elegirMensaje(o) {
 		"Has eliminado a un objetivo, restantes: " + cntAndroides,
 		"Has eliminado todos los objetivos, pasas al nivel " + userLevel,
 		"Has matado a Batman, esperamos que te hayas quedado a gusto.",
-		"Has golpeado a Batman!!, has ganado 300 puntos."
+		"Has golpeado a Batman!!, has ganado 300 puntos.",
+		"Enhorabuena, te has pasado el juego, vuelves al nivel 1."
 	];
 	mostrarMensaje(mensajes[o]);
 }
