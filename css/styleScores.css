@@ -21,16 +21,17 @@
     margin-top: 70px;
     color: white;
 }
-
-#volver {
-    margin-top: 100px;
+#volver{
+    margin-top: 70px;
+}
+#volver, #chgOrd {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 50%;
 }
 
-#volver>* {
+#volver>*, #chgOrd>* {
     width: 50%;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -53,6 +54,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 #scores>*>* {
     width: 100%;
     margin: 10px;
