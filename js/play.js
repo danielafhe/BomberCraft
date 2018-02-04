@@ -43,11 +43,12 @@ require([
         camera.position.z = 2;
 
         //Al redimensionar la ventana, se ajusta a las nuevas proporciones
-        THREEx.WindowResize(renderer, camera)
+        THREEx.WindowResize(renderer, camera);
+        /*
         window.addEventListener('resize', function (event) {
-            mixerContext.rendererCSS.setSize(window.innerWidth, window.innerHeight)
+            mixerContext.rendererCSS.setSize(window.innerWidth, window.innerHeight);
         }, false);
-
+        */
         //Asignar los 3 puntos de luz        
         (function () {
             //Luz ambiente
