@@ -26,11 +26,11 @@ function cargarUsuario() {
     cargarUser();
     //If trampas o modo local
     if (userLevel == undefined)
-        userLevel = 1;
+        userLevel = 5;
     if (userPoints == undefined)
         userPoints = 0;
     if (userSkin == undefined)
-        userSkin = "recursos/skins/papa_noel.png";
+        userSkin = "recursos/skins/steve_jobs.png";
     updateScore();
 }
 

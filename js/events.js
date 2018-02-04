@@ -1,22 +1,24 @@
+//Contadores para los segundos
 var milisec = 0;
 var seconds = 0;
-
+//Objetos
 let bombaPrincipal;
 let batman;
+//Posiciones
 let posicionBombaInicial = [0, 0, 0];
 let posicionSalidaPersonaje = [-1, 0, 3];
-
 let posicionPersonaje;
-let cntAndroides;
-let cntArboles;
-
 let pstAndroides = [];
 let pstArboles = [];
-
+//Cantidad de elementos
+let cntAndroides;
+let cntArboles;
+//Area del juego
 let areaJuego = 65;
+//Indicadores de estado
 let sePuedeCoger = true;
 let atacando = false;
-
+//Sonido tipo explosion
 let sndExplosion;
 
 /**
@@ -90,14 +92,14 @@ function explotarBomba() {
 function cambiarNivel(n) {
     n -= 1;
     let niveles = [
-        [2, 100],
+        [7, 250],
         [3, 140],
         [4, 170],
         [5, 200],
-        [7, 250]
+        [2, 50]
     ];
 
-    if (n > niveles.length) {
+    if (n > (niveles.length)-1) {
         mostrarMensaje("Enhorabuena, te has pasado el juego, vuelves al nivel 1.");
         userLevel = 1;
         n = 1;
