@@ -181,6 +181,8 @@ require([
                     if (brazoDeBox.intersectsBox(batPrBox) || brazoIzBox.intersectsBox(batPrBox)) {
                         scene.remove(batman);
                         if (!batmanMuerto) {
+                            let sndBatman = new Audio("recursos/sounds/batman.mp3");
+                            sndBatman.play();
                             elegirMensaje(5);
                             userPoints += 300;
                             updateScore();

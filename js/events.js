@@ -2,11 +2,11 @@
 let areaJuego = 65;
 //Niveles de dificultad
 let niveles = [
-    [7, 250],
+    [2, 100],
     [3, 140],
     [4, 170],
     [5, 200],
-    [2, 50]
+    [7, 250]
 ];
 //Contadores para los segundos
 var milisec = 0;
@@ -41,12 +41,12 @@ function soltarBomba() {
     let ocurrido = 0;
     let puntosSumar = 25;
     let tiempoMuerteEstimado = 30;
-    sndExplosion = new Audio("recursos/sounds/explosion_1.wav");
+    sndExplosion = new Audio("recursos/sounds/explosion_1.mp3");
 
     setTimeout(function () {
         let ps = [bombaPrincipal.position.x, bombaPrincipal.position.z];
         if (checkPstPlayerDelete(ps, 2)) {
-            sndExplosion = new Audio("recursos/sounds/explosion_0.wav");
+            sndExplosion = new Audio("recursos/sounds/explosion_0.mp3");
             cambiarNivel(userLevel);
             ocurrido = 1;
         } else if (checkPstDroidDelete(ps, 2)) {
@@ -55,7 +55,7 @@ function soltarBomba() {
             userPoints += puntosSumar;
             cntAndroides--;
             ocurrido = 2;
-            sndExplosion = new Audio("recursos/sounds/explosion_0.wav");
+            sndExplosion = new Audio("recursos/sounds/explosion_0.mp3");
             if (cntAndroides <= 0) {
                 userLevel++;
                 if (userLevel > niveles.length) {
@@ -63,6 +63,7 @@ function soltarBomba() {
                     actualizarUser();
                     cambiarNivel(userLevel);
                     ocurrido = 6;
+                    let sndWinner = new Audio("recursos/sounds/winner.mp3").play();
                 } else {
                     actualizarUser();
                     cambiarNivel(userLevel);

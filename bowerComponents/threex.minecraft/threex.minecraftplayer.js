@@ -67,6 +67,8 @@ THREEx.MinecraftPlayer = function () {
 				if (!cogido) {
 					if (sePuedeCoger) {
 						cogido = true;
+						let sndCoger = new Audio("recursos/sounds/coger.mp3");
+						sndCoger.play();
 						showSeconds();
 					}
 				}
@@ -77,6 +79,8 @@ THREEx.MinecraftPlayer = function () {
 			if (estaCerca) {
 				if (cogido) {
 					cogido = false;
+					let sndSoltar = new Audio("recursos/sounds/soltar.mp3");
+					sndSoltar.play();
 					soltarBomba();
 					stopShowSec();
 				}
