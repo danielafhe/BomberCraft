@@ -66,7 +66,8 @@ require([
         //Ciclo del dia
         //Angulo de salida del sol
         var sunAngle = Math.PI + Math.PI / 2;
-        var sunAngle = 2.4;
+        //var sunAngle = 2.4;
+        var sunAngle = -2;
         onRenderFcts.push(function (delta, now) {
             //Paso del tiempo
             sunAngle -= delta / dayDuration * Math.PI * 2
@@ -178,6 +179,7 @@ require([
                     if (brazoDeBox.intersectsBox(batPrBox) || brazoIzBox.intersectsBox(batPrBox)) {
                         scene.remove(batman);
                         if (!batmanMuerto) {
+                            elegirMensaje(5);
                             userPoints += 300;
                             updateScore();
                         }
