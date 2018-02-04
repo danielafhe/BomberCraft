@@ -67,7 +67,7 @@ function loguearse() {
         document.cookie = "userId=" + encodeURIComponent(userId) + "; expires=" + expiresdate.toUTCString() + "; domain=.daniafonso.github.io";
     } else {
         $("#errorFormLog").html('No coincide con ningún usuario.');
-        mostarAvisoLog();
+        //mostarAvisoLog();
         valido = false;
     }
     return valido;
