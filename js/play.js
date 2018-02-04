@@ -196,6 +196,13 @@ require([
         }, false);
         sndAmbient.play();
 
+        let sndWalking = new Audio('recursos/sounds/walking_forest.wav');
+        sndWalking.addEventListener('ended', function () {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+
+
         //Controles de la camara
         var cameraControlsDisabled = false
         //Mantener la camara detras del jugador
@@ -222,12 +229,29 @@ require([
         //Controles al apretar las teclas
         document.body.addEventListener('keydown', function (event) {
             var input = player.controls.input
-            if (event.keyCode === 'W'.charCodeAt(0)) input.up = true
-            if (event.keyCode === 'S'.charCodeAt(0)) input.down = true
-            if (event.keyCode === 'A'.charCodeAt(0)) input.left = true
-            if (event.keyCode === 'D'.charCodeAt(0)) input.right = true
-            if (event.keyCode === 'Q'.charCodeAt(0)) input.strafeLeft = true
-            if (event.keyCode === 'E'.charCodeAt(0)) input.strafeRight = true
+            if (event.keyCode === 'W'.charCodeAt(0)) {
+                input.up = true;
+                sndWalking.play();
+            }
+            if (event.keyCode === 'S'.charCodeAt(0)) {
+                input.down = true;
+                sndWalking.play();
+            }
+            if (event.keyCode === 'A'.charCodeAt(0)) {
+                input.left = true;
+            }
+            if (event.keyCode === 'D'.charCodeAt(0)) {
+                input.right = true;
+            }
+            if (event.keyCode === 'Q'.charCodeAt(0)) {
+                input.strafeLeft = true;
+                sndWalking.play();
+            }
+            if (event.keyCode === 'E'.charCodeAt(0)) {
+                input.strafeRight = true;
+                sndWalking.play();
+            }
+
             if (event.keyCode === 'C'.charCodeAt(0)) {
                 input.circularPunch = true;
                 atacando = true;
@@ -240,12 +264,28 @@ require([
         //Controles al soltar las teclas
         document.body.addEventListener('keyup', function (event) {
             var input = player.controls.input
-            if (event.keyCode === 'W'.charCodeAt(0)) input.up = false
-            if (event.keyCode === 'S'.charCodeAt(0)) input.down = false
-            if (event.keyCode === 'A'.charCodeAt(0)) input.left = false
-            if (event.keyCode === 'D'.charCodeAt(0)) input.right = false
-            if (event.keyCode === 'Q'.charCodeAt(0)) input.strafeLeft = false
-            if (event.keyCode === 'E'.charCodeAt(0)) input.strafeRight = false
+            if (event.keyCode === 'W'.charCodeAt(0)) {
+                input.up = false;
+                sndWalking.pause();
+            }
+            if (event.keyCode === 'S'.charCodeAt(0)) {
+                input.down = false;
+                sndWalking.pause();
+            }
+            if (event.keyCode === 'A'.charCodeAt(0)) {
+                input.left = false;
+            }
+            if (event.keyCode === 'D'.charCodeAt(0)) {
+                input.right = false;
+            }
+            if (event.keyCode === 'Q'.charCodeAt(0)) {
+                input.strafeLeft = false;
+                sndWalking.pause();
+            }
+            if (event.keyCode === 'E'.charCodeAt(0)) {
+                input.strafeRight = false;
+                sndWalking.pause();
+            }
             if (event.keyCode === 'C'.charCodeAt(0)) {
                 input.circularPunch = false;
                 atacando = false;

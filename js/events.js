@@ -16,7 +16,6 @@ let sePuedeCoger = true;
 let atacando = false;
 
 let sndExplosion;
-let sndAmbiente;
 
 /**
  * @description Suelta la bomba en el suelo e inicia el proceso de explotar.
