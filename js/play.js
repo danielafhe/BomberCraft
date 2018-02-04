@@ -66,8 +66,7 @@ require([
         //Ciclo del dia
         //Angulo de salida del sol
         var sunAngle = Math.PI + Math.PI / 2;
-        //var sunAngle = 2.4;
-        var sunAngle = -2;
+        var sunAngle = 2.4;
         onRenderFcts.push(function (delta, now) {
             //Paso del tiempo
             sunAngle -= delta / dayDuration * Math.PI * 2

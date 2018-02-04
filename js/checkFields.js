@@ -20,13 +20,12 @@ function guardarUsuario() {
             skin: skinElegido,
             points: 0,
             level: 1
-        })
+        });
 
         localStorage.setItem("usersJson", JSON.stringify(usersJson));
         valido = true;
         $("#errorFormReg").html('Te has registrado correctamente.');
     } else {
-        console.log("Lo cambia");
         $("#errorFormReg").html('Ya hay un usuario registrado con ese correo.');
         valido = false;
     }
