@@ -3,7 +3,7 @@
 
 
 ### Enlace al juego:
-## BomberCraft.com
+## https://daniafonso.github.io/BomberCraft/
 
 ### DESCRIPCION:
 La finalidad del juego es destruir todos los objetivos existentes en cada nivel, si se consigue antes de un tiempo predefinido, obtendremos una puntuación extra. Además existe una serie de bonus por el mapa que permiten sumar puntos adicionales.
