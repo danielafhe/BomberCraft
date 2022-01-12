@@ -8,6 +8,8 @@
 ### DESCRIPCION:
 La finalidad del juego es destruir todos los objetivos existentes en cada nivel, si se consigue antes de un tiempo predefinido, obtendremos una puntuación extra. Además existe una serie de bonus por el mapa que permiten sumar puntos adicionales.
 
+![Bombercraft](https://user-images.githubusercontent.com/35113859/149131174-f57658a1-df2e-4ce1-8d73-1f67b1b9d4be.png)
+
 ### FORMA DE UTILIZARLO:
 Para jugar primero debemos crearnos una cuenta, tendremos que registrarnos rellenando un formulario en el que se pide:
 - Gamertag -> Nombre que aparece en el juego, es tu nombre dentro del mundo del juego.
